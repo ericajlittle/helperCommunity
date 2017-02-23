@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  startlat: 1.5
+  startlng: 1.5
+  endlat: 1.5
+  endlng: 1.5
+  user: one
+  event: one
+
+two:
+  startlat: 1.5
+  startlng: 1.5
+  endlat: 1.5
+  endlng: 1.5
+  user: two
+  event: two
