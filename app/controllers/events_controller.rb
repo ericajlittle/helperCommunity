@@ -7,4 +7,24 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  def create
+    @event = Event.new(event_params)
+
+    if @event.save
+      redirect_to '/'
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def event_params
+    params.require(:event).permit(
+      :title,
+      :address,
+      :description
+    )
+  end
+
 end

@@ -1,6 +1,26 @@
-<% form_for @event do |form| %> # you can use f here
+<h1>Create an Event</h1>
 
-    First name: <%= form.text_field :start_point %>
-    Last name : <%= form.text_field :end_point %>
+<%= form_for @event do |form| %>
 
+  <p class="control">
+    <%= form.label :title %>:
+    <%= form.text_field :title %>
+  </p>
+
+  <p class="control">
+    <%= form.label :address %>:
+    <%= form.text_field :address %>
+  </p>
+
+  <p class="control">
+    <%= form.label :address %>:
+    <%= form.text_field :address %>
+  </p>
+
+  <p class="control">
+    <%= form.label :description %>:
+    <%= form.text_field :description %>
+  </p>
+
+  <%= form.submit 'Create an Event', class: 'btn' %>
 <% end %>
