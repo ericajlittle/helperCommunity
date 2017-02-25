@@ -3,53 +3,31 @@
     <a class="nav-item">
       Karma
     </a>
-    <% if current_user %>
-      Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
-    <% else %>
+    <% if not current_user %>
       <a class="nav-item">
         Signup
       </a>
       <div>
         <%= form_for :user, url: '/users' do |f| %>
           <ul>
-              <li>
-                Image: <%= f.text_field :image %>
-              </li>
-              <li>
-                Name: <%= f.text_field :name %>
-              </li>
-              <li>
-                Email: <%= f.text_field :email %>
-              </li>
-              <li>
-                Description: <%= f.text_area :description %>
-              </li>
-              <li>
-                Phone number: <%= f.telephone_field :phone_number %>
-              </li>
-              <li>
-                Date of birth: <%= f.date_field :DoB %>
-              </li>
-              <li>
-                Password: <%= f.password_field :password %>
-              </li>
-              <li>
-                Password Confirmation: <%= f.password_field :password_confirmation %>
-              </li>
-              <li>
-                <%= f.submit "Submit" %>
-              </li>
+              <li>Image: <%= f.text_field :image %></li>
+              <li>Name: <%= f.text_field :name %></li>
+              <li>Email: <%= f.text_field :email %></li>
+              <li>Description: <%= f.text_area :description %></li>
+              <li>Phone number: <%= f.telephone_field :phone_number %></li>
+              <li>Date of birth: <%= f.date_field :DoB %></li>
+              <li>Password: <%= f.password_field :password %></li>
+              <li>Password Confirmation: <%= f.password_field :password_confirmation %></li>
+              <li><%= f.submit "Submit" %></li>
           </ul>
         <% end %>
       </div>
     <% end %>
   </div>
-  <% if current_user %>
-    this is react
-    <%= react_component("HelloWorld", props: {name: current_user.name}) %>
-  <% end %>
   <div class="nav-right nav-menu">
-    <% if not current_user %>
+    <% if current_user %>
+      Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+    <% else %>
       <a class="nav-item">
         Login
       </a>
