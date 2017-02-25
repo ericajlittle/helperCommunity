@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def show
+    @event = Event.find(params[:id])
+  end
+
 end

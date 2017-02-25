@@ -1,0 +1,26 @@
+<h4>Create a New Event</h4>
+
+<% puts @event.attributes %>
+
+<%= form_for @event do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    Time of Event
+  </p>
+  <p>
+    <%= f.datetime_local_field :scheduled_at %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

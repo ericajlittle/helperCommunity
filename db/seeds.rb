@@ -69,7 +69,8 @@ e1 = u1.events.create!({
   lat: 49.281049,
   lng: -123.107174,
   status: false,
-  description: Faker::Hipster.paragraph(4)
+  description: Faker::Hipster.paragraph(4),
+  scheduled_at: 10.days.from_now
 })
 
 e2 = u2.events.create!({
@@ -77,7 +78,8 @@ e2 = u2.events.create!({
   lat: 49.284557,
   lng: -123.10831,
   status: true,
-  description: Faker::Hipster.paragraph(4)
+  description: Faker::Hipster.paragraph(4),
+  scheduled_at: 15.days.from_now
 })
 
 e3 = u3.events.create!({
@@ -85,7 +87,8 @@ e3 = u3.events.create!({
   lat: 49.28,
   lng: -123,
   status: false,
-  description: Faker::Hipster.paragraph(4)
+  description: Faker::Hipster.paragraph(4),
+  scheduled_at: 15.days.from_now
 })
 
 puts "DONE!"
