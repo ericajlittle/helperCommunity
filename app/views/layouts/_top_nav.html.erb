@@ -4,8 +4,9 @@
       Karma
     </a>
   </div>
-
-
+  <% if current_user %>
+    <%= react_component("HelloWorld", props: {name: current_user.name}) %>
+  <% end %>
   <div class="nav-right nav-menu">
     <% if current_user %>
       Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
@@ -33,7 +34,7 @@
           Name: <%= f.text_field :name %>
           Email: <%= f.text_field :email %>
           Description: <%= f.text_area :description %>
-          Phone number: <%= f.text_field :phone_number %>
+          Phone number: <%= f.telephone_field :phone_number %>
           Date of birth: <%= f.text_field :DoB %>
           Password: <%= f.password_field :password %>
           Password Confirmation: <%= f.password_field :password_confirmation %>
