@@ -13,12 +13,16 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-    puts @event.attributes
+    # puts request.params["name"]
+    # puts request.params["desc"]
+    # puts event_params
+    @event = Event.create(event_params)
+    @event.user_id = current_user.id if current_user
+    # puts @event.attributes
 
     if @event.save
-      redirect_to event_path(@event)
-      # need to redirect page to new event page
+      # respond_with event_path(@event)
+      render json:@event
     else
       render :new
     end
@@ -26,16 +30,13 @@ class EventsController < ApplicationController
 
 
   private
-  def event_params
-    ans = params.require(:event).permit(
-      :title,
-      :description,
-      :scheduled_at
-      # :location,
-      # :user_id
-    )
-    puts ans
-    ans
-  end
+    def event_params
+      params.require(:event).permit(
+        :title,
+        :description
+        # :scheduled_at
+        # :location,
+      )
+    end
 
 end
