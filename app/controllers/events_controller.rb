@@ -1,6 +1,12 @@
 class EventsController < ApplicationController
 
   def index
+    @events = Event.all
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @events }
+    end
   end
 
   def new
@@ -13,7 +19,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to '/'
     else
-      render :new
+      render  :new
     end
   end
 
