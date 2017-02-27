@@ -6,7 +6,7 @@ one:
   lng: 1.5
   description: MyText
   status: false
-  references: 
+  references:
 
 two:
   title: MyString
@@ -14,4 +14,4 @@ two:
   lng: 1.5
   description: MyText
   status: false
-  references: 
+  references:

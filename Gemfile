@@ -39,6 +39,9 @@ gem 'bcrypt', '~> 3.1.7'
 #Use Bulma as CSS Framework
 gem "bulma-rails", "~> 0.3.1"
 
+#Use Geocoder as a geocoding solution https://github.com/alexreisner/geocoder
+gem 'geocoder'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

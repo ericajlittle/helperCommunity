@@ -2,6 +2,12 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @events }
+    end
+
   end
 
   def show
@@ -13,17 +19,10 @@ class EventsController < ApplicationController
   end
 
   def create
-    # puts request.params["name"]
-    # puts request.params["desc"]
-    puts event_params
-
     @event = Event.create(event_params)
     @event.user_id = current_user.id if current_user
-    # puts @event.attributes
-    puts "ROHIT DHAND"
-    puts @event.inspect
+
     if @event.save
-      # respond_with event_path(@event)
       render json:@event
     else
       render :new
