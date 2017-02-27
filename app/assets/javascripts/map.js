@@ -6,11 +6,6 @@ function initMap(data) {
     center: uluru
   });
 
-  // var marker = new google.maps.Marker({
-  //   position: uluru,
-  //   map: map
-  // });
-
   for(i = 0; i < data.length; i++) {
     var marker = new google.maps.Marker({
       position: {lat: data[i]["lat"], lng: data[i]["lng"]},
