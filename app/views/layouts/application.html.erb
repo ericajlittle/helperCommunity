@@ -12,9 +12,10 @@
 
     <%= render 'layouts/top_nav' %>
 
-    <main class="container is-fluid">
-      <%= yield %>
-    </main>
+  <main class="container">
+    <%= react_component("Event") %>
+    <%= yield %>
+  </main>
 
   </body>
 </html>

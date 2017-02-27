@@ -7,6 +7,11 @@ class EventsController < ApplicationController
       format.html
       format.json { render :json => @events }
     end
+
+  end
+
+  def show
+    @event = Event.find(params[:id])
   end
 
   def new
@@ -14,25 +19,25 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = Event.create(event_params)
+    @event.user_id = current_user.id if current_user
 
     if @event.save
-      redirect_to '/'
+      render json:@event
     else
-      render  :new
+      render :new
     end
   end
 
-  private
 
-  def event_params
-    puts params
-    params
-    # params.require(:event).permit(
-    #   :title,
-    #   :address,
-    #   :description
-    # )
-  end
+  private
+    def event_params
+      params.require(:event).permit(
+        :title,
+        :description
+        # :scheduled_at
+        # :location,
+      )
+    end
 
 end
