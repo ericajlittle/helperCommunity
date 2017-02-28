@@ -42,8 +42,6 @@ export default class Event extends React.Component {
     }); //end of the Ajax call
   };
 
-
-
   render() {
     return (
       <div>
