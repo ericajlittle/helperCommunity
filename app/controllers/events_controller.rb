@@ -20,6 +20,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create(event_params)
+
     @event.user_id = current_user.id if current_user
 
     if @event.save
@@ -32,14 +33,13 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      # puts params["event"]["address"]
-      params
-      # params.require(:event).permit(
-      #   :title,
-      #   :description
-      #   # :scheduled_at
-      #   # :location,
-      # )
-    end
+      # puts params[:address]
+      params.require(:event).permit(
+        :title,
+        :description,
+        :address,
+        :city
+      )
 
+    end
 end

@@ -43,7 +43,6 @@ export default class Event extends React.Component {
   render() {
     return (
       <div>
-
         <h3>Create a New Event</h3>
 
         <input ref='title' placeholder='Enter the title of the item' />
