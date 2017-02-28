@@ -12,3 +12,12 @@
   <strong>Date and Time:</strong>
   <%= @event.scheduled_at %>
 </p>
+
+<p>
+  <strong>Event Creator:</strong>
+  <%= @event.user.name %> </p>
+<p>
+  <strong>Email:</strong>
+  <%= @event.user.email %>
+</p>
+
