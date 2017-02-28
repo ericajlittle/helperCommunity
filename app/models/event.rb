@@ -13,4 +13,6 @@ class Event < ApplicationRecord
 
   after_validation :geocode
 
+  has_attached_file :photo, :styles => { :medium =>     "300x300#", :thumb => "200x200#" }
+
 end
