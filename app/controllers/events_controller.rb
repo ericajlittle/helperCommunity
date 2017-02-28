@@ -32,12 +32,14 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(
-        :title,
-        :description
-        # :scheduled_at
-        # :location,
-      )
+      # puts params["event"]["address"]
+      params
+      # params.require(:event).permit(
+      #   :title,
+      #   :description
+      #   # :scheduled_at
+      #   # :location,
+      # )
     end
 
 end
