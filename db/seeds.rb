@@ -73,7 +73,7 @@ e1 = u1.events.create!({
   scheduled_at: 10.days.from_now
 })
 
-e2 = u2.events.create!({
+e2 = u1.events.create!({
   title: 'Buy a speaker',
   lat: 49.284557,
   lng: -123.10831,
@@ -82,7 +82,7 @@ e2 = u2.events.create!({
   scheduled_at: 15.days.from_now
 })
 
-e3 = u3.events.create!({
+e3 = u1.events.create!({
   title: 'Invest another Facebook',
   lat: 49.28,
   lng: -123,
