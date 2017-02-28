@@ -1,7 +1,5 @@
 class Event < ApplicationRecord
 
-  attr_accessor :address
-
   belongs_to :user
 
   validates :title, presence: true

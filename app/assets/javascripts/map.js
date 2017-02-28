@@ -13,18 +13,20 @@ function initMap(data) {
     maxWidth: 300
   });
 
-  for(i = 0; i < data.length; i++) {
-    var marker = new google.maps.Marker({
-      position: {lat: data[i]["lat"], lng: data[i]["lng"]},
-      map: map
-    });
+  if (data) {
+    for(i = 0; i < data.length; i++) {
+      var marker = new google.maps.Marker({
+        position: {lat: data[i]["lat"], lng: data[i]["lng"]},
+        map: map
+      });
 
-    contentString = '<div class="event-title">' +
-                    '<a href = "/events/' + data[i]['id'] + '">' + data[i]['title'] + '</a>' +
-                    '<p>' + data[i]['description'] + '</p>'
-                    '</div>';
+      contentString = '<div class="event-title">' +
+                      '<a href = "/events/' + data[i]['id'] + '">' + data[i]['title'] + '</a>' +
+                      '<p>' + data[i]['description'] + '</p>'
+                      '</div>';
 
-    makeInfoWindowEvent(map, infowindow, contentString, marker);
+      makeInfoWindowEvent(map, infowindow, contentString, marker);
+  }
   }
 }
 
