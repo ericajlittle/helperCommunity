@@ -20,6 +20,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create(event_params)
+
     @event.user_id = current_user.id if current_user
 
     if @event.save
@@ -36,10 +37,9 @@ class EventsController < ApplicationController
         :title,
         :description,
         :scheduled_at,
-        :address
-        # :scheduled_at
-        # :location,
+        :address,
+        :city
       )
-    end
 
+    end
 end
