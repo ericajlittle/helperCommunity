@@ -38,6 +38,10 @@ function makeInfoWindowEvent(map, infowindow, contentString, marker) {
 }
 
 $(function() {
+
+  var height = $(window).height() - $('nav').height() - $('.index-map .container').height();
+  $("#map").css('height', height);
+
   $.ajax({
     url: "/events",
     dataType: "json"

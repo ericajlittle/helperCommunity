@@ -1,22 +1,25 @@
 <nav class="nav">
-  <div class="nav-left">
-    <a class="nav-item">
-      Karma
-    </a>
-  </div>
-  <div class="nav-right nav-menu">
-    <% if not current_user %>
-      <a class="nav-item modal-button" data-target="#modal-ter">Signup</a>
-    <% end %>
-
-    <% if current_user %>
-      Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
-    <% else %>
-      <a class="nav-item">Login</a>
-    <% end %>
+  <div class="container">
+    <div class="nav-left">
+      <a class="nav-item">
+        Karma
+      </a>
+    </div>
+    <div class="nav-right nav-menu">
+      <% if not current_user %>
+        <a class="nav-item modal-button" data-target="#modal-ter">Signup</a>
+      <% end %>
+      <span class="nav-item">|</span>
+      <% if current_user %>
+        Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+      <% else %>
+        <a class="nav-item">Login</a>
+      <% end %>
+    </div>
   </div>
 </nav>
 
+<!-- Signup modal -->
 <div id="modal-ter" class="modal">
   <div class="modal-background"></div>
   <%= form_for :user, url: '/users' do |f| %>
@@ -100,5 +103,16 @@
         <a class="button">Cancel</a>
       </footer>
     </div>
+  <% end %>
+</div>
+
+<!-- Login menu -->
+<div class="" style="display: none">
+  <%= form_tag '/login' do %>
+
+    Email: <%= text_field_tag :email %>
+    Password: <%= password_field_tag :password %>
+    <%= submit_tag "Submit" %>
+
   <% end %>
 </div>

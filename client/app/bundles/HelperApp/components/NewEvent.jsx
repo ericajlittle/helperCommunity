@@ -26,7 +26,6 @@ export default class NewEvent extends React.Component {
 
   render() {
     return (
-
       <div className="modal">
         <div className="modal-background"></div>
         <div className="modal-card">
