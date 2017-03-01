@@ -1,4 +1,10 @@
-<section class="index-map">
+<% content_for(:header) do %>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE1Boy-A_UgLPNoOY7kOuj-6Yju4cEJCE">
+  </script>
+<% end %>
+<%= react_component("App", props:{name:'App'}) %>
+<!-- <section class="index-map">
 
   <div class="columns">
     <div class="column">
@@ -10,10 +16,9 @@
   <div class="columns">
     <div class="column">
       <div id="map"></div>
-      <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE1Boy-A_UgLPNoOY7kOuj-6Yju4cEJCE&callback=initMap">
-      </script>
+
+
     </div>
   </div>
 
-</section>
+</section> -->
