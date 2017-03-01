@@ -2,6 +2,8 @@ import React, {PropTypes} from 'react';
 import Map from '../components/Map';
 import NewEvent from '../components/NewEvent';
 
+import {ActionCable} from 'actioncable-js';
+
 export default class App extends React.Component {
   // static propTypes = {
   //   name: PropTypes.string.isRequired, // this is passed from the Rails view
@@ -14,6 +16,9 @@ export default class App extends React.Component {
     this.state = { name: this.props.name };
     // this.handleClick = this.handleClick.bind(this);
     this.createEvent = this.createEvent.bind(this);
+
+    this.cable = ActionCable.createConsumer();
+    console.log(this.cable);
   }
 
   // handleClick() {
