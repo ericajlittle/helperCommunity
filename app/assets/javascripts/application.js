@@ -16,4 +16,4 @@
 //= require jquery_ujs
 
 //= require map
-
+//= require bulma

@@ -1,6 +1,13 @@
+
 // Vendor
 @import "bulma";
 
 //App
 @import "events";
+@import "forms";
+
+
 //Global
+body {
+  font-size: $size-5;
+}

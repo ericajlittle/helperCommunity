@@ -1,0 +1,18 @@
+.label:not(:last-child) {
+  margin-bottom: 0.3em;
+}
+
+.label {
+  font-weight: normal;
+}
+
+.form-group {
+  margin-bottom: 13px;
+}
+
+.required {
+  color: red;
+  left: 1px;
+  position: relative;
+  top: 1px;
+}

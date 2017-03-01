@@ -3,45 +3,102 @@
     <a class="nav-item">
       Karma
     </a>
-    <% if not current_user %>
-      <a class="nav-item">
-        Signup
-      </a>
-      <div>
-        <%= form_for :user, url: '/users' do |f| %>
-          <ul>
-              <li>Image: <%= f.text_field :image %></li>
-              <li>Name: <%= f.text_field :name %></li>
-              <li>Email: <%= f.text_field :email %></li>
-              <li>Description: <%= f.text_area :description %></li>
-              <li>Phone number: <%= f.telephone_field :phone_number %></li>
-              <li>Date of birth: <%= f.date_field :DoB %></li>
-              <li>Password: <%= f.password_field :password %></li>
-              <li>Password Confirmation: <%= f.password_field :password_confirmation %></li>
-              <li><%= f.submit "Submit" %></li>
-          </ul>
-        <% end %>
-      </div>
-    <% end %>
   </div>
   <div class="nav-right nav-menu">
+    <% if not current_user %>
+      <a class="nav-item modal-button" data-target="#modal-ter">Signup</a>
+    <% end %>
+
     <% if current_user %>
       Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
     <% else %>
-      <a class="nav-item">
-        Login
-      </a>
-      <div>
-        <%= form_tag '/login' do %>
-
-          Email: <%= text_field_tag :email %>
-          Password: <%= password_field_tag :password %>
-          <%= submit_tag "Submit" %>
-
-        <% end %>
-      </div>
-      |
-
+      <a class="nav-item">Login</a>
     <% end %>
   </div>
 </nav>
+
+<div id="modal-ter" class="modal">
+  <div class="modal-background"></div>
+  <%= form_for :user, url: '/users' do |f| %>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Create an Account</p>
+      </header>
+      <section class="modal-card-body">
+        <div class="form-group">
+          <label class="label">Name:<sup class="required">*</sup></label>
+          <p class="control has-icon">
+            <%= f.text_field :name, class: 'input', placeholder: 'John Smith'  %>
+            <span class="icon is-small">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </span>
+          </p>
+        </div>
+        <div class="form-group">
+          <label class="label">Email:<sup class="required">*</sup></label>
+          <p class="control has-icon">
+            <%= f.text_field :email, class: 'input', placeholder: 'example@email.com' %>
+            <span class="icon is-small">
+              <i class="fa fa-envelope"></i>
+            </span>
+          </p>
+        </div>
+        <div class="form-group">
+          <label class="label has-icon">Description:</label>
+          <p class="control">
+            <%= f.text_area :description, class: 'textarea', placeholder: 'Please write a couple words about you' %>
+          </p>
+        </div>
+        <div class="form-group">
+          <label class="label">Phone number:</label>
+          <p class="control has-icon">
+            <%= f.telephone_field :phone_number, class: 'input', placeholder: '+1 (123) 456 7890' %>
+            <span class="icon is-small">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+            </span>
+          </p>
+        </div>
+        <div class="form-group">
+          <label class="label">Date of birth:</label>
+          <p class="control has-icon">
+            <%= f.date_field :DoB, class: 'input'  %>
+            <span class="icon is-small">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+          </p>
+        </div>
+        <div class="form-group">
+          <label class="label">Avatar:</label>
+          <p class="control">
+            <%= f.file_field :picture %>
+          </p>
+        </div>
+        <div class="form-group">
+          <label class="label">Password:<sup class="required">*</sup></label>
+          <p class="control has-icon">
+            <%= f.password_field :password, class: 'input', placeholder: '*******' %>
+            <span class="icon is-small">
+              <i class="fa fa-lock"></i>
+            </span>
+          </p>
+        </div>
+        <div class="form-group">
+          <label class="label">Password confirmation:<sup class="required">*</sup></label>
+          <p class="control has-icon">
+            <%= f.password_field :password_confirmation, class: 'input', placeholder: '*******' %>
+            <span class="icon is-small">
+              <i class="fa fa-lock"></i>
+            </span>
+          </p>
+        </div>
+        <div>
+          <sup class="required">*</sup> Required fields
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <%= f.submit "Create Account", class: 'button is-success' %>
+        <a class="button">Cancel</a>
+      </footer>
+    </div>
+  <% end %>
+</div>
