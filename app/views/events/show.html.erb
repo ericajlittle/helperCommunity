@@ -39,6 +39,15 @@
     <strong>Post Created At:</strong>
     <%= @event.created_at.strftime("%d %b. %Y") %>
   </p>
+
+  <p>
+    <strong>Respond to Event Request:</strong>
+     <%= f.select(@event) do %>
+       <% @event_id do |c| -%>
+         <%= content_tag(:option, c.first, value: c.last) %>
+       <% end %>
+     <% end %>
+  </p>
 </section>
 
 

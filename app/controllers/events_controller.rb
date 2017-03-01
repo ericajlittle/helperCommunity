@@ -30,6 +30,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def accept_events
+
+  end
+
 
   private
     def event_params
