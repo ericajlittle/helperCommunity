@@ -9,3 +9,21 @@
     <%= @user.description %>
   </p>
 </section>
+
+<section class="events">
+  <br>
+  <h2>Request List</h2>
+  <% @user.events.reverse.each do |event| %>
+    <dl class="hover">
+      <dt><b>Request: </b><%= event.title %></dt>
+      <dd></dd>
+      <dt><b>Description:</b></dt>
+      <dd class="event"><%= event.description %></dd>
+      <br>
+    </dl>
+  <% end %>
+</section>
+
+<%= render 'form' %>
+
+<%= render 'reviews' %>

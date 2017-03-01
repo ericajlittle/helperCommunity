@@ -1,9 +1,16 @@
+
 <section class="user-info">
   <h1>Host Info</h1>
   <p>
     <strong>Name:</strong>
     <%= @event.user.name %>
   </p>
+
+  <p>
+    <strong>Profile:</strong>
+    <%= image_tag @event.user.photo.url(:thumb) %>
+  </p>
+
   <p>
     <strong>Karma Member Since:</strong>
     <%= @event.user.created_at.strftime("%d %b. %Y") %>
@@ -40,8 +47,5 @@
     <%= @event.created_at.strftime("%d %b. %Y") %>
   </p>
 </section>
-
-
-
 
 
