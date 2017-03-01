@@ -14,10 +14,12 @@ export default class NewEvent extends React.Component {
   handleClick() {
     var title = this.refs.title.value;
     var desc = this.refs.description.value;
+    var scheduled_at = this.refs.scheduled_at.value;
     var address = this.refs.address.value;
     const eventData = {
       title: title,
       description: desc,
+      scheduled_at: scheduled_at,
       address: address
     }
     this.props.createEvent(eventData)

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @review =Review.new(:user=>@user, :reviewer=>current_user)
   end
 
   def create

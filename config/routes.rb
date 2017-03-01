@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   resources :sessions
 
-  resources :users
+  resources :users do
+    resources :reviews, only: [:create, :destroy]
+  end
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
