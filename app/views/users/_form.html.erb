@@ -1,11 +1,7 @@
-<section class="review-form">
-  <% if current_user%>
+<% if current_user && current_user.id != @user.id %>
+  <section class="review-form">
       <h2>Add a comment:</h2>
       <%= form_for([@user, @review]) do |f| %>
-        <p>
-          <%= f.label :reviewer_name %><br>
-          <%= f.text_field :reviewer_name %>
-        </p>
         <p>
           <%= f.label :content %><br>
           <%= f.text_area :content %>
@@ -18,5 +14,5 @@
           <%= f.submit %>
         </p>
       <% end %>
-  <% end %>
-</section>
+  </section>
+<% end %>
