@@ -45,8 +45,7 @@ export default class App extends React.Component {
       data: {event: eventData},
       success: (response) => {
 
-        alert("Event Successfully created");
-        console.log(response);
+        // alert("Event Successfully created");
       },
       error: (response)=>{
         alert("Error creating an event");

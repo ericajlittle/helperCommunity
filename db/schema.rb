@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301023906) do
+ActiveRecord::Schema.define(version: 20170301232306) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -19,15 +19,15 @@ ActiveRecord::Schema.define(version: 20170301023906) do
     t.text     "description"
     t.boolean  "status"
     t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.datetime "scheduled_at"
+    t.string   "address"
+    t.string   "city"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.datetime "scheduled_at"
-    t.string   "address"
-    t.string   "city"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 20170301023906) do
     t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "room_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
@@ -64,6 +74,14 @@ ActiveRecord::Schema.define(version: 20170301023906) do
     t.index ["event_id"], name: "index_reviews_on_event_id"
     t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_rooms_on_event_id"
   end
 
   create_table "users", force: :cascade do |t|

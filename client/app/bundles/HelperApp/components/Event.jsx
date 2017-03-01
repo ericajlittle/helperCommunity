@@ -20,25 +20,25 @@ export default class Event extends React.Component {
     var address = this.refs.address.value;
     var city = this.refs.city.value;
 
-    $.ajax({
-      url: '/events',
-      type: 'POST',
-      data: {
-        event: {
-          title: title,
-          description: desc,
-          address: address,
-          city: city
-        }
-      },
-      success: (response) => {
-        alert("Event Successfully created");
-      },
-      error: (response)=>{
-        alert("Error creating an event");
-      }
-    });
-  };
+  //   $.ajax({
+  //     url: '/events',
+  //     type: 'POST',
+  //     data: {
+  //       event: {
+  //         title: title,
+  //         description: desc,
+  //         address: address,
+  //         city: city
+  //       }
+  //     },
+  //     success: (response) => {
+  //       alert("Event Successfully created");
+  //     },
+  //     error: (response)=>{
+  //       alert("Error creating an event");
+  //     }
+  //   });
+  // };
 
   render() {
     return (
