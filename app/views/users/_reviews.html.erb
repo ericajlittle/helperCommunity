@@ -3,13 +3,13 @@
   <% @user.reviews.reverse.each do |review| %>
     <dl class="hover">
       <br>
-      <dt>Reviewer Name</dt>
-      <dd><%= review.reviewer_name %></dd>
+      <dt>Reviewer</dt>
+      <dd><%= link_to review.reviewer.name, "/users/#{review.reviewer_id}" %></dd>
       <dt>Feedback</dt>
       <dd class="review"><%= review.content %></dd>
       <dt>Overview</dt>
       <dd><%= review.rating %>/5</dd>
-      <%if current_user.id == review.user_id%>
+      <%if current_user.id == review.reviewer_id%>
         <dd>
           <%= link_to 'Remove This Review', [review.user, review],
                        method: :delete,
