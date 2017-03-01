@@ -46,15 +46,17 @@
     <strong>Post Created At:</strong>
     <%= @event.created_at.strftime("%d %b. %Y") %>
   </p>
-
-  <p>
-    <strong>Respond to Event Request:</strong>
-     <%= f.select(@event) do %>
-       <% @event_id do |c| -%>
-         <%= content_tag(:option, c.first, value: c.last) %>
-       <% end %>
-     <% end %>
-  </p>
 </section>
+<% if current_user && !current_user.accepted_event?(@event.id) %>
+  <%= form_for(@event, url: :accept_event, method: :post) do |form| %>
+    <button type="submit">Accept</button>
+  <% end %>
+<% else %>
+  <p>You have accepted the invitation for this event</p>
+<% end %>
+<p>
+  Attendees: <%= @event.users.pluck(:name).join(', ') %>
+</p>
+
 
 

@@ -12,6 +12,7 @@ class Event < ApplicationRecord
   geocoded_by :address, :latitude  => :lat, :longitude => :lng
 
   after_validation :geocode
+  has_and_belongs_to_many :users
 
   has_attached_file :photo, :styles => { :medium =>     "300x300#", :thumb => "200x200#" }
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/

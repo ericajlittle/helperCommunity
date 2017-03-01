@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301023906) do
+ActiveRecord::Schema.define(version: 20170301215811) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -19,16 +19,21 @@ ActiveRecord::Schema.define(version: 20170301023906) do
     t.text     "description"
     t.boolean  "status"
     t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.datetime "scheduled_at"
+    t.string   "address"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.datetime "scheduled_at"
-    t.string   "address"
     t.string   "city"
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "events_users", id: false, force: :cascade do |t|
+    t.integer "user_id",  null: false
+    t.integer "event_id", null: false
   end
 
   create_table "helper_lists", force: :cascade do |t|
