@@ -21,3 +21,7 @@
   <%= @event.user.email %>
 </p>
 
+<p>
+  <strong>Photo:</strong>
+  <%= image_tag @event.user.photo.url(:thumb) %>
+</p>
