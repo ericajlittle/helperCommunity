@@ -7,7 +7,6 @@
   </p>
 
   <p>
-    <strong>Profile:</strong>
     <%= image_tag @event.user.photo.url(:thumb) %>
   </p>
 
@@ -19,7 +18,12 @@
     <strong>About <%= @event.user.name %>:</strong>
     <%= @event.user.description %>
   </p>
+
+  <p>
+    <strong>View <%=link_to @event.user.name, user_path %>'s Profile Page</strong>
+  </p>
 </section>
+
 <section class="event-info">
   <h1>Event Info</h1>
   <p>
@@ -52,10 +56,11 @@
     <button type="submit">Accept</button>
   <% end %>
 <% else %>
-  <p>You have accepted the invitation for this event</p>
+  <p> <%= current_user.name %>, you are now registered for <%= @event.user.name %>'s event. </p>
+  <p> <%= @event.user.name %>'s contact info: <%= @event.user.email %> </p>
 <% end %>
 <p>
-  Attendees: <%= @event.users.pluck(:name).join(', ') %>
+  Attendees: <%= link_to @event.users.pluck(:name).join(', '), user_path %>
 </p>
 
 
