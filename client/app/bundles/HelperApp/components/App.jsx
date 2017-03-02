@@ -19,6 +19,7 @@ export default class App extends React.Component {
 
     this.cable = ActionCable.createConsumer();
     console.log(this.cable);
+    this.cable.subscriptions.create({channel: 'EventChannel'})
   }
 
   // handleClick() {
@@ -69,7 +70,7 @@ export default class App extends React.Component {
   }
   setupSubscription(){
 
-    App.events = App.cable.subscriptions.create("CommentsChannel", {
+    App.events = App.cable.subscriptions.create("EventsChannel", {
       event_id: this.state.event.id,
 
       connected: function () {

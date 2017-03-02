@@ -3,7 +3,7 @@ class EventChannel < ApplicationCable::Channel
   # Called when the consumer has successfully
   # become a subscriber of this channel.
   def subscribed
-    puts subscribed!!!!!!!!!!!!!!!!!!!!
-    stream_from "Event_On_Subscribed"
+    puts 'subscribed!!!!!!!!!!!!!!!!!!!!'
+    # stream_from "Event_On_Subscribed"
   end
 end
