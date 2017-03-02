@@ -10,9 +10,15 @@
   margin-bottom: 13px;
 }
 
-.required {
+.required::after {
   color: red;
+  content: "*";
+  font-size: $size-6;
   left: 1px;
   position: relative;
-  top: 1px;
+  top: -2px;
+}
+
+.required-note {
+  font-size: 14px;
 }

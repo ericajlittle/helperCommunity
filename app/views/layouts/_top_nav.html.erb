@@ -8,12 +8,52 @@
     <div class="nav-right nav-menu">
       <% if not current_user %>
         <a class="nav-item modal-button" data-target="#modal-ter">Signup</a>
+        <span class="nav-item">|</span>
       <% end %>
-      <span class="nav-item">|</span>
+
       <% if current_user %>
-        Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+        <button class="button create-event is-medium">Create Event</button>
+        <span class="nav-item dropdown-item user">
+          <i class="fa fa-user-circle-o" aria-hidden="true"></i> <%= current_user.name %>
+          <ul class="user-menu dropdown-menu">
+            <li>
+              <i class="fa fa-cog" aria-hidden="true"></i>
+              <%= link_to "Profile", '/user/:id' %>
+            </li>
+            <li>
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              <%= link_to "Logout", '/logout' %>
+            </li>
+          </ul>
+        </span>
       <% else %>
-        <a class="nav-item">Login</a>
+        <a class="nav-item dropdown-item login">
+          Login
+          <!-- Login form -->
+          <div class="dropdown-menu login-form">
+            <%= form_tag '/login' do %>
+              <div class="form-group">
+                <label class="label">Email:</label>
+                <p class="control has-icon">
+                  <%= text_field_tag :email, nil, class: 'input' %>
+                  <span class="icon is-small">
+                    <i class="fa fa-envelope"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="form-group">
+                <label class="label">Password:</label>
+                <p class="control has-icon">
+                  <%= password_field_tag :password, nil, class: 'input' %>
+                  <span class="icon is-small">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                </p>
+              </div>
+              <%= submit_tag "Submit", class: 'button' %>
+            <% end %>
+          </div>
+        </a>
       <% end %>
     </div>
   </div>
@@ -29,16 +69,16 @@
       </header>
       <section class="modal-card-body">
         <div class="form-group">
-          <label class="label">Name:<sup class="required">*</sup></label>
+          <label class="label required">Name:</label>
           <p class="control has-icon">
-            <%= f.text_field :name, class: 'input', placeholder: 'John Smith'  %>
+            <%= f.text_field :name, class: 'input', placeholder: 'John Smith' %>
             <span class="icon is-small">
               <i class="fa fa-user" aria-hidden="true"></i>
             </span>
           </p>
         </div>
         <div class="form-group">
-          <label class="label">Email:<sup class="required">*</sup></label>
+          <label class="label required">Email:</label>
           <p class="control has-icon">
             <%= f.text_field :email, class: 'input', placeholder: 'example@email.com' %>
             <span class="icon is-small">
@@ -77,7 +117,7 @@
           </p>
         </div>
         <div class="form-group">
-          <label class="label">Password:<sup class="required">*</sup></label>
+          <label class="label required">Password:</label>
           <p class="control has-icon">
             <%= f.password_field :password, class: 'input', placeholder: '*******' %>
             <span class="icon is-small">
@@ -86,7 +126,7 @@
           </p>
         </div>
         <div class="form-group">
-          <label class="label">Password confirmation:<sup class="required">*</sup></label>
+          <label class="label required">Password confirmation:</label>
           <p class="control has-icon">
             <%= f.password_field :password_confirmation, class: 'input', placeholder: '*******' %>
             <span class="icon is-small">
@@ -94,8 +134,8 @@
             </span>
           </p>
         </div>
-        <div>
-          <sup class="required">*</sup> Required fields
+        <div class="required-note">
+          <span class="required">Required fields</span>
         </div>
       </section>
       <footer class="modal-card-foot">
@@ -103,16 +143,5 @@
         <a class="button">Cancel</a>
       </footer>
     </div>
-  <% end %>
-</div>
-
-<!-- Login menu -->
-<div class="" style="display: none">
-  <%= form_tag '/login' do %>
-
-    Email: <%= text_field_tag :email %>
-    Password: <%= password_field_tag :password %>
-    <%= submit_tag "Submit" %>
-
   <% end %>
 </div>
