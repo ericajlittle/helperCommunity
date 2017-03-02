@@ -20,7 +20,7 @@
   </p>
 
   <p>
-    <strong>View <%=link_to @event.user.name, user_path %>'s Profile Page</strong>
+    <strong>View <%=link_to @event.user.name, user_path(@event.user_id) %>'s Profile Page</strong>
   </p>
 </section>
 
@@ -60,8 +60,13 @@
   <p> <%= @event.user.name %>'s contact info: <%= @event.user.email %> </p>
 <% end %>
 <p>
-  Attendees: <%= link_to @event.users.pluck(:name).join(', '), user_path %>
+  Attendees:
+  <% @event.users.each do |x| %>
+    <%= link_to x.name, user_path(x.id) %>
+  <%end%>
 </p>
+
+
 
 
 
