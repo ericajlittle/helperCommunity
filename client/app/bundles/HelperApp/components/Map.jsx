@@ -12,6 +12,14 @@ export default class Map extends React.Component {
   componentDidMount() {
     console.log('getting events');
     this.getEvents();
+
+  }
+
+  makeInfoWindowEvent(map, infowindow, contentString, marker) {
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(contentString);
+      infowindow.open(map, marker);
+    });
   }
 
   getEvents() {
@@ -25,6 +33,7 @@ export default class Map extends React.Component {
   }
 
   initMap(data) {
+    const _this = this;
     var uluru = {lat: 49.2821004, lng: -123.1082745};
 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -51,7 +60,7 @@ export default class Map extends React.Component {
                         '<p>' + data[i]['description'] + '</p>'
                         '</div>';
 
-        makeInfoWindowEvent(map, infowindow, contentString, marker);
+        _this.makeInfoWindowEvent(map, infowindow, contentString, marker);
     }
     }
   }

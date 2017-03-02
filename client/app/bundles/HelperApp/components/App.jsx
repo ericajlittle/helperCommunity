@@ -70,22 +70,22 @@ export default class App extends React.Component {
   }
   setupSubscription(){
 
-    App.events = App.cable.subscriptions.create("EventsChannel", {
-      event_id: this.state.event.id,
+    // App.events = App.cable.subscriptions.create("EventsChannel", {
+    //   event_id: this.state.event.id,
 
-      connected: function () {
-        console.log("connected!!!!!");
-        // setTimeout(() => this.perform('follow',
-        //                               { message_id: this.message_id}), 1000 );
-      },
+    //   connected: function () {
+    //     console.log("connected!!!!!");
+    //     // setTimeout(() => this.perform('follow',
+    //     //                               { message_id: this.message_id}), 1000 );
+    //   },
 
-      received: function (data) {
-        console.log('received!!!!!!!');
-        // this.updateCommentList(data.comment);
-      },
+    //   received: function (data) {
+    //     console.log('received!!!!!!!');
+    //     // this.updateCommentList(data.comment);
+    //   },
 
-      // updateCommentList: this.updateCommentList
+    //   // updateCommentList: this.updateCommentList
 
-      });
+    //   });
   }
 }
