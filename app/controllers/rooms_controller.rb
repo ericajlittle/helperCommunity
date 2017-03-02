@@ -1,7 +1,10 @@
 class RoomsController < ApplicationController
 
   def index
+    @current_user = current_user
     @rooms = Room.all
+    @events = Event.all
+    @help_lists = HelperList.all
   end
 
   def show
