@@ -13,7 +13,10 @@ export default class App extends React.Component {
     // this.state = defaultState;
     // How to set initial state in ES6 class syntax
     // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
-    this.state = { name: this.props.name };
+    this.state = {
+      name: this.props.name,
+      events: []
+    };
     // this.handleClick = this.handleClick.bind(this);
     this.createEvent = this.createEvent.bind(this);
 
@@ -21,6 +24,10 @@ export default class App extends React.Component {
     console.log(this.cable);
 
     this.setupSubscription();
+  }
+
+  componentDidMount() {
+    this.getEvents();
   }
 
   // handleClick() {
@@ -43,6 +50,15 @@ export default class App extends React.Component {
   //     }
   //   }); //end of the Ajax call
   // }
+  //
+  getEvents() {
+    $.ajax({
+      url: "/events",
+      dataType: "json"
+    }).done((data) => {
+      this.setState({ events: data })
+    });
+  }
 
   createEvent(eventData) {
     // ajax call to save event to db
@@ -65,23 +81,26 @@ export default class App extends React.Component {
     return (
       <div>
         <NewEvent createEvent={this.createEvent} />
-        <Map />
+        <Map events={ this.state.events } />
       </div>
     );
   }
+
   setupSubscription(){
 
     this.event = this.cable.subscriptions.create("EventChannel", {
       // event_id: this.state.event.id,
 
-      connected: function () {
+      connected: () => {
         console.log("connected??");
         // setTimeout(() => this.perform('follow',
         //                               { message_id: this.message_id}), 1000 );
       },
 
-      received: function (data) {
+      received: (data) => {
         console.log('received', data);
+        this.getEvents();
+
         // this.updateCommentList(data.comment);
       },
 
