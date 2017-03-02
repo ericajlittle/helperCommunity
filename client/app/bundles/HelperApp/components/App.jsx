@@ -37,6 +37,17 @@ export default class App extends React.Component {
   //   }); //end of the Ajax call
   // }
 
+  registerRoom (roomInfo) {
+    $.ajax({
+      url: '/rooms',
+      type: 'POST',
+      data: {room: roomInfo},
+      error: () => {
+        alert("Room is failed to create!");
+      }
+    });
+  }
+
   createEvent(eventData) {
     // ajax call to save event to db
     $.ajax({
@@ -44,7 +55,11 @@ export default class App extends React.Component {
       type: 'POST',
       data: {event: eventData},
       success: (response) => {
-
+        const roomInfo = {
+          title: response.title,
+          event_id: response.id
+        };
+        this.registerRoom(roomInfo);
         // alert("Event Successfully created");
       },
       error: (response)=>{
