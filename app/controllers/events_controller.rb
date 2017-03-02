@@ -31,7 +31,6 @@ class EventsController < ApplicationController
   end
 
   def accept_event
-    # puts "Hello"
     @event = Event.find(params[:id])
     @event.users << current_user # kind of like event.users.push(current_user) & save to db
     redirect_to :event
