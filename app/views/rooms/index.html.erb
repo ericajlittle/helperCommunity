@@ -2,7 +2,7 @@
 
 <% @events.each do |e| %>
   <% if current_user.id == e.user.id %>
-   <%= link_to(room_path(@rooms.find_by('event_id', e.id).id)) do %>
+    <%= link_to room_path(@rooms.find_by(event_id: e.id).id) do %>
       You have requested help: <%= e.title %>.
     <% end %>
   <% end %>
@@ -12,7 +12,7 @@
 
 <% @help_lists.each do |h| %>
   <% if current_user.id == h.user.id %>
-   <%= link_to(room_path(@rooms.find_by('event_id', h.event_id).id)) do %>
+   <%= link_to(room_path(@rooms.find_by(event_id: h.event_id).id)) do %>
       You have helped: <%= @events.find(h.event_id).title %>.
     <% end %>
   <% end %>
