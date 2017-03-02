@@ -27,7 +27,11 @@
       <dd class="event"><%= event.description %></dd>
       <dd></dd>
       <dt><b>Members Attending Event:</b></dt>
-      <dd class="event"><%= event.users.pluck(:name).join(', ') %></dd>
+      <dd class="event">
+        <% @user.events.each do |x| %>
+          <%= link_to x.user.name, user_path(x.user.id) %>
+        <%end%>
+      </dd>
       <br>
     </dl>
   <% end %>
