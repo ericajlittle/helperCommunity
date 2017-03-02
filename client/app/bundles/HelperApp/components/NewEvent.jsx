@@ -28,22 +28,53 @@ export default class NewEvent extends React.Component {
 
   render() {
     return (
-      <div className="modal">
+      <div id="modal-crev" className="modal">
         <div className="modal-background"></div>
         <div className="modal-card">
           <header className="modal-card-head">
-            <h1 className="modal-card-title">Create a New Event</h1>
+            <p className="modal-card-title">Create a New Event</p>
             <button className="delete"></button>
           </header>
+
           <section className="modal-card-body">
-            <input ref='title' placeholder='Enter the Event Title' />
-            <input ref='description' placeholder='Enter a Description' />
-            <input ref='scheduled_at' placeholder='Enter Event Date' type="datetime-local" name="bday" />
-            <input ref='address' placeholder='Enter the Address' />
-            <input ref='city' placeholder='Enter the City' />
+            <div className="form-group">
+              <label className="label required">Title:</label>
+              <p className="control">
+                <input ref='title' placeholder='LHL Demo Day' className='input' />
+              </p>
+            </div>
+
+            <div className="form-group">
+              <label className="label required">Description:</label>
+              <p className="control">
+                <textarea ref='description' className='textarea' placeholder='Help moving tables and chairs' ></textarea>
+              </p>
+            </div>
+
+            <div className="form-group">
+              <label className="label required">Date:</label>
+              <p className="control">
+                <input ref='scheduled_at' type="datetime-local" name="bday" className='input' />
+              </p>
+            </div>
+
+            <div className="form-group">
+              <label className="label required">Address:</label>
+              <p className="control">
+                <input ref='address' className='input' placeholder='128 W. Hastings' />
+              </p>
+            </div>
+
+            <div className="form-group">
+              <label className="label required">City:</label>
+              <p className="control">
+                <input ref='city' className='input' placeholder='Vancouver' />
+              </p>
+            </div>
           </section>
+
           <footer className="modal-card-foot">
-            <button  onClick={this.handleClick}>Create Event</button>
+            <button onClick={this.handleClick} className="button">Create Event</button>
             <a className="button">Cancel</a>
           </footer>
         </div>

@@ -13,10 +13,10 @@ export default class Map extends React.Component {
     return (
       <section className="index-map">
         <div className="container">
-          <h1>
+          <p className="mission">
             Community Enagement Resource,<br />
             for members of the community supporting eachother through goodwill. <br />Beautiful text about our app
-          </h1>
+          </p>
         </div>
 
         <div className="map-container">
