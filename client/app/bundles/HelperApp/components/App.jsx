@@ -67,4 +67,24 @@ export default class App extends React.Component {
       </div>
     );
   }
+  setupSubscription(){
+
+    App.events = App.cable.subscriptions.create("CommentsChannel", {
+      event_id: this.state.event.id,
+
+      connected: function () {
+        console.log("connected!!!!!");
+        // setTimeout(() => this.perform('follow',
+        //                               { message_id: this.message_id}), 1000 );
+      },
+
+      received: function (data) {
+        console.log('received!!!!!!!');
+        // this.updateCommentList(data.comment);
+      },
+
+      // updateCommentList: this.updateCommentList
+
+      });
+  }
 }

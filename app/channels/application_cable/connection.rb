@@ -3,6 +3,7 @@ module ApplicationCable
     identified_by :current_user
 
     def connect
+      puts 'connected!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
       self.current_user = find_verified_user
     end
 
