@@ -18,7 +18,8 @@
           <ul class="user-menu dropdown-menu">
             <li>
               <i class="fa fa-cog" aria-hidden="true"></i>
-              <%= link_to "Profile", '/user/:id' %>
+              <%= link_to "Profile", "/user/#{current_user.id}" %>
+
             </li>
             <li>
               <i class="fa fa-sign-out" aria-hidden="true"></i>
