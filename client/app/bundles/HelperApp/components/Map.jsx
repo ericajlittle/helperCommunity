@@ -32,4 +32,33 @@ export default class Map extends React.Component {
       </section>
     );
   }
+  componentDidMount() {
+    this.setupSubscription();
+  }
+
+  // updateCommentList(comment) {
+  //   let message = JSON.parse(comment);
+  //   this.setState({message: message});
+  // },
+  setupSubscription(){
+    console.log('subscription');
+
+    App.events = App.cable.subscriptions.create("EventsChannel", {
+      // message_id: this.state.message.id,
+
+      connected: function () {
+        console.log('Connected!');
+        // setTimeout(() => this.perform('follow',
+                                      // { message_id: this.message_id}), 1000 );
+      },
+
+      received: function (data) {
+        console.log('Received!');
+        // this.updateCommentList(data.comment);
+      },
+
+      // updateCommentList: this.updateCommentList
+
+    });
+  }
 }
