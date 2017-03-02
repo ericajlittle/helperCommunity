@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :destroy]
   end
 
-  resources :rooms, only: [:show, :create]
+  resources :rooms, only: [:index, :show, :create]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
