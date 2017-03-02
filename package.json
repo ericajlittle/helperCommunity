@@ -13,6 +13,6 @@
     "test": "rspec"
   },
   "dependencies": {
-    "actioncable-js": "^5.0.0-rc2"
+    "actioncable": "^5.0.2"
   }
 }

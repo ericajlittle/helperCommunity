@@ -4,6 +4,6 @@ class EventChannel < ApplicationCable::Channel
   # become a subscriber of this channel.
   def subscribed
     puts 'subscribed!!!!!!!!!!!!!!!!!!!!'
-    # stream_from "Event_On_Subscribed"
+    stream_from "events"
   end
 end

@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import Map from '../components/Map';
 import NewEvent from '../components/NewEvent';
 
-import {ActionCable} from 'actioncable-js';
+import ActionCable from 'actioncable';
 
 export default class App extends React.Component {
   // static propTypes = {
@@ -19,7 +19,8 @@ export default class App extends React.Component {
 
     this.cable = ActionCable.createConsumer();
     console.log(this.cable);
-    this.cable.subscriptions.create({channel: 'EventChannel'})
+
+    this.setupSubscription();
   }
 
   // handleClick() {
@@ -70,22 +71,23 @@ export default class App extends React.Component {
   }
   setupSubscription(){
 
-    // App.events = App.cable.subscriptions.create("EventsChannel", {
-    //   event_id: this.state.event.id,
+    this.event = this.cable.subscriptions.create("EventChannel", {
+      // event_id: this.state.event.id,
 
-    //   connected: function () {
-    //     console.log("connected!!!!!");
-    //     // setTimeout(() => this.perform('follow',
-    //     //                               { message_id: this.message_id}), 1000 );
-    //   },
+      connected: function () {
+        console.log("connected??");
+        // setTimeout(() => this.perform('follow',
+        //                               { message_id: this.message_id}), 1000 );
+      },
 
-    //   received: function (data) {
-    //     console.log('received!!!!!!!');
-    //     // this.updateCommentList(data.comment);
-    //   },
+      received: function (data) {
+        console.log('received', data);
+        // this.updateCommentList(data.comment);
+      },
 
-    //   // updateCommentList: this.updateCommentList
+      updateCommentList: this.updateCommentList
 
-    //   });
+    });
+    console.log('this.event', this.event);
   }
 }

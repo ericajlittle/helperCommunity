@@ -13,4 +13,6 @@ class Event < ApplicationRecord
 
   after_validation :geocode
 
+  after_create_commit { ActionCable.server.broadcast 'events', {message: self.to_json}}
+
 end

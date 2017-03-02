@@ -7,12 +7,12 @@ export default class Map extends React.Component {
     // How to set initial state in ES6 class syntax
     // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
     this.state = { name: this.props.name };
+    this.getEvents();
   }
 
   componentDidMount() {
     console.log('getting events');
-    this.getEvents();
-
+    // this.getEvents();
   }
 
   makeInfoWindowEvent(map, infowindow, contentString, marker) {
@@ -31,7 +31,6 @@ export default class Map extends React.Component {
       _this.initMap(data);
     });
   }
-
   initMap(data) {
     const _this = this;
     var uluru = {lat: 49.2821004, lng: -123.1082745};
@@ -79,6 +78,7 @@ export default class Map extends React.Component {
 
         <div className="columns">
           <div className="column">
+            <p>Events: {this.props.events}</p>
             <div id="map"></div>
 
 
