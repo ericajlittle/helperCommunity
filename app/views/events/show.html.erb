@@ -51,7 +51,9 @@
     <%= @event.created_at.strftime("%d %b. %Y") %>
   </p>
 </section>
-<% if current_user && !current_user.accepted_event?(@event.id) %>
+<% if current_user && @event.user != current_user %>
+
+<% if !current_user.accepted_event?(@event.id) %>
   <%= form_for(@event, url: :accept_event, method: :post) do |form| %>
     <button type="submit">Accept</button>
   <% end %>
@@ -59,6 +61,11 @@
   <p> <%= current_user.name %>, you are now registered for <%= @event.user.name %>'s event. </p>
   <p> <%= @event.user.name %>'s contact info: <%= @event.user.email %> </p>
 <% end %>
+
+<%end%>
+
+
+
 <p>
   Attendees:
   <% @event.users.each do |x| %>
