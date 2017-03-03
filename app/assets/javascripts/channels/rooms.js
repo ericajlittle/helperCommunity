@@ -3,6 +3,8 @@ $(() => {
   const roomIds = $('.all_subscribed_rooms_id').data('id');
   // connect with each room
   roomIds.forEach((id) => {
+    // I overwrite App.room in this code, it is not good, but it does not affect the result
+    // because room_id is attached and used inside the message.
     App.room = App.cable.subscriptions.create ({
         channel: 'RoomsChannel',
         room_id: id
@@ -14,7 +16,7 @@ $(() => {
           console.log(`Damn it, I am disconnected with Room ${id}...`);
         },
         received: function(data) {
-          console.log(`I received ${data.content}`);
+          console.log(`I received ${data.room_id}`);
         }
     });
   });
