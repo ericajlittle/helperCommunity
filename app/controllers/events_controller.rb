@@ -2,7 +2,6 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
-    @rooms = Room.all
 
     respond_to do |format|
       format.html

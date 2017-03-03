@@ -4,9 +4,7 @@
   </script>
 <% end %>
 <%= react_component("App", props:{name:'App'}) %>
-<!-- The following tag is a invisible tag which enable me to access data in front end /javascripts/channels/rooms.js. Also, RoomIdArray is a helper from /helpers/events_helper.rb -->
-<%= content_tag :div, class: "all_subscribed_rooms_id", data: {id: RoomIdArray(@rooms)} do %>
-<% end %>
+
 <!-- <section class="index-map">
 
   <div class="columns">

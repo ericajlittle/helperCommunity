@@ -1,2 +1,9 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<h1> <%= @room.title %> </h1>
+
+
+
+<form>
+  <label> Say something: </label> <br>
+  <input id='message-input' type='text' data-room-id=<%= @room.id %>
+    data-user-id=<%= current_user.id %> >
+</form>
