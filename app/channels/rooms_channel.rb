@@ -6,9 +6,7 @@ class RoomsChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    puts "Hi iam here"
     message = Message.create(content: data['content'], user_id: data['user_id'], room_id: data['room_id'])
-    puts "#{message}"
   end
 
 end

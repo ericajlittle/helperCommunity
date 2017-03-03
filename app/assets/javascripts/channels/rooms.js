@@ -24,19 +24,14 @@ $(() => {
 });
 
 function submitNewMessage() {
-  console.log('YoYoYoYoYo');
   $this = $('#message-input');
   $this.keydown(function(event) {
-    event.preventDefault();
     if (event.keyCode === 13) {
       const content = event.target.value;
       const chatroomId = $this.data('roomId');
       const userId = $this.data('userId');
-      console.log('I am here right????????');
-      console.log(content, chatroomId, userId);
       App.room.send({content: content, room_id: chatroomId, user_id: userId});
-      $('[data-textarea="message"]').val(" ");
-      return false;
+      $this.val("");
     }
   });
 }
