@@ -1,10 +1,6 @@
 .dropdown-item {
   position: relative;
 
-  &:hover .dropdown-menu {
-    display: block;
-  }
-
   .fa {
     vertical-align: middle;
   }

@@ -34,7 +34,6 @@ export default class NewEvent extends React.Component {
           <div className="modal-card">
             <header className="modal-card-head">
               <p className="modal-card-title">Create a New Event</p>
-              <button className="delete"></button>
             </header>
 
             <section className="modal-card-body">
