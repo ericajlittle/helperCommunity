@@ -7,7 +7,10 @@ class User < ApplicationRecord
   has_attached_file :photo, :styles => { :medium =>  "300x300#", :thumb => "200x200#" }
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
   has_many :reviews
-  has_and_belongs_to_many :events
+  has_and_belongs_to_many :accepted_events, class_name: "Event"
+
+  validates :name, presence: true
+  validates :phone_number, presence: true
 
   def accepted_event?(event_id)
     events.where(id: event_id).any?
