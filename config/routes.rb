@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :destroy]
   end
 
+  resource  :verifications
+
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301215811) do
+ActiveRecord::Schema.define(version: 20170303013659) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20170301215811) do
     t.string   "image"
     t.text     "description"
     t.date     "DoB"
-    t.integer  "phone_number"
+    t.string   "phone_number"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "photo_file_name"
