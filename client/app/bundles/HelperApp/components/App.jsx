@@ -15,12 +15,12 @@ export default class App extends React.Component {
       type: 'POST',
       data: {event: eventData},
       success: (response) => {
-
-        alert("Event Successfully created");
+        // alert("Event Successfully created");
         console.log(response);
       },
       error: (response)=>{
-        alert("Error creating an event");
+        // alert("Error creating an event");
+        console.log(response);
       }
     });
   }

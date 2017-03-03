@@ -1,4 +1,11 @@
 $(function() {
+  var token = $('meta[name=csrf-token]').attr("content");
+  $(".modal").find("#create-event").prepend(
+    // <input name="utf8" type="hidden" value="✓">
+    $('<input type="hidden" name="authenticity_token" value=' + token + '>')
+  );
+
+
   function initMap(data) {
     var uluru = {lat: 49.2821004, lng: -123.1082745};
 

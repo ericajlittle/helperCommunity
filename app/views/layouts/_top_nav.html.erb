@@ -1,7 +1,7 @@
 <nav class="nav">
   <div class="container">
     <div class="nav-left">
-      <a class="nav-item">
+      <a href="/" class="nav-item">
         Karma
       </a>
     </div>
@@ -18,7 +18,7 @@
           <ul class="user-menu dropdown-menu">
             <li>
               <i class="fa fa-cog" aria-hidden="true"></i>
-              <%= link_to "Profile", "/user/#{current_user.id}" %>
+              <%= link_to "Profile", "/users/#{current_user.id}" %>
 
             </li>
             <li>

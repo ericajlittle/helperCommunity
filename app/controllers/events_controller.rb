@@ -24,7 +24,8 @@ class EventsController < ApplicationController
     @event.user_id = current_user.id if current_user
 
     if @event.save
-      render json:@event
+      #render json:@event
+      redirect_to @event
     else
       render :new
     end

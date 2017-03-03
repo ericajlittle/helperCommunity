@@ -10,25 +10,26 @@ export default class NewEvent extends React.Component {
   }
 
   handleClick() {
-    const title = this.refs.title.value;
-    const desc = this.refs.description.value;
-    const scheduled_at = this.refs.scheduled_at.value;
-    const address = this.refs.address.value;
-    const city = this.refs.city.value;
+    // const title = this.refs.title.value;
+    // const desc = this.refs.description.value;
+    // const scheduled_at = this.refs.scheduled_at.value;
+    // const address = this.refs.address.value;
+    // const city = this.refs.city.value;
 
-    const eventData = {
-      title: title,
-      description: desc,
-      scheduled_at: scheduled_at,
-      address: address,
-      city: city
-    }
-    this.props.createEvent(eventData)
+    // const eventData = {
+    //   title: title,
+    //   description: desc,
+    //   scheduled_at: scheduled_at,
+    //   address: address,
+    //   city: city
+    // }
+    // this.props.createEvent(eventData)
   }
 
   render() {
     return (
       <div id="modal-crev" className="modal">
+        <form method="post" action="/events" id="create-event">
         <div className="modal-background"></div>
         <div className="modal-card">
           <header className="modal-card-head">
@@ -78,6 +79,7 @@ export default class NewEvent extends React.Component {
             <a className="button">Cancel</a>
           </footer>
         </div>
+        </form>
       </div>
     );
   }
