@@ -70,6 +70,8 @@ e1 = u1.events.create!({
   lng: -123.107174,
   status: false,
   description: Faker::Hipster.paragraph(4),
+  end_lat: 49.28102759999999,
+  end_lng: -123.0913713,
   scheduled_at: 10.days.from_now
 })
 
@@ -79,6 +81,8 @@ e2 = u1.events.create!({
   lng: -123.10831,
   status: true,
   description: Faker::Hipster.paragraph(4),
+  end_lat: 49.28102759999999,
+  end_lng: -123.0913713,
   scheduled_at: 15.days.from_now
 })
 
@@ -88,6 +92,8 @@ e3 = u1.events.create!({
   lng: -123,
   status: false,
   description: Faker::Hipster.paragraph(4),
+  end_lat: 49.2865591,
+  end_lng: -123.1164145,
   scheduled_at: 15.days.from_now
 })
 

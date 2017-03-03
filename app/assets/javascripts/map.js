@@ -1,56 +1,56 @@
-function initMap(data) {
-  var uluru = {lat: 49.2821004, lng: -123.1082745};
+// function initMap(data) {
+//   var uluru = {lat: 49.2821004, lng: -123.1082745};
 
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: uluru
-  });
-
-  var contentString;
-
-  var infowindow = new google.maps.InfoWindow({
-    content: contentString,
-    maxWidth: 300
-  });
-
-  if (data) {
-    for(i = 0; i < data.length; i++) {
-      var marker = new google.maps.Marker({
-        position: {lat: data[i]["lat"], lng: data[i]["lng"]},
-        map: map
-      }),
-      markerB = new google.maps.Marker({
-        position: {lat: 49.2821004, lng: -123.1082745},
-        title: "point B",
-        label: "B",
-        map: map
-      });
-
-      contentString = '<div class="event-title">' +
-                      '<a href = "/events/' + data[i]['id'] + '">' + data[i]['title'] + '</a>' +
-                      '<p>' + data[i]['description'] + '</p>'
-                      '</div>';
-
-      makeInfoWindowEvent(map, infowindow, contentString, marker, markerB);
-    }
-  }
-}
-
-function makeInfoWindowEvent(map, infowindow, contentString, marker) {
-  google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent(contentString);
-    infowindow.open(map, marker);
-  });
-}
-
-// $(function() {
-//   $.ajax({
-//     url: "/events",
-//     dataType: "json"
-//   }).done(function(data) {
-//     initMap(data);
+//   var map = new google.maps.Map(document.getElementById('map'), {
+//     zoom: 12,
+//     center: uluru
 //   });
-// });
+
+//   var contentString;
+
+//   var infowindow = new google.maps.InfoWindow({
+//     content: contentString,
+//     maxWidth: 300
+//   });
+
+//   if (data) {
+//     for(i = 0; i < data.length; i++) {
+//       var marker = new google.maps.Marker({
+//         position: {lat: data[i]["lat"], lng: data[i]["lng"]},
+//         map: map
+//       }),
+//       markerB = new google.maps.Marker({
+//         position: {lat: 49.2821004, lng: -123.1082745},
+//         title: "point B",
+//         label: "B",
+//         map: map
+//       });
+
+//       contentString = '<div class="event-title">' +
+//                       '<a href = "/events/' + data[i]['id'] + '">' + data[i]['title'] + '</a>' +
+//                       '<p>' + data[i]['description'] + '</p>'
+//                       '</div>';
+
+//       makeInfoWindowEvent(map, infowindow, contentString, marker, markerB);
+//     }
+//   }
+// }
+
+// function makeInfoWindowEvent(map, infowindow, contentString, marker) {
+//   google.maps.event.addListener(marker, 'click', function() {
+//     infowindow.setContent(contentString);
+//     infowindow.open(map, marker);
+//   });
+// }
+
+$(function() {
+  $.ajax({
+    url: "/events",
+    dataType: "json"
+  }).done(function(data) {
+    initMap(data);
+  });
+});
 
 // function initMap() {
 //     var pointA = {lat: 49.28126719999999, lng: -123.0769687},
@@ -113,3 +113,35 @@ function makeInfoWindowEvent(map, infowindow, contentString, marker) {
 
 // });
 // geocoder.geocode();
+
+
+function initMap(data) {
+var uluru = {lat: 49.2821004, lng: -123.1082745};
+var map = new google.maps.Map(document.getElementById("map"),{
+  zoom: 12,
+  center: uluru
+});
+function renderDirections(result) {
+  var directionsRenderer = new google.maps.DirectionsRenderer;
+  directionsRenderer.setMap(map);
+  directionsRenderer.setDirections(result);
+}
+
+var directionsService = new google.maps.DirectionsService;
+function requestDirections(start, end) {
+  directionsService.route({
+    origin: start,
+    destination: end,
+    travelMode: google.maps.DirectionsTravelMode.DRIVING
+  }, function(result) {
+    renderDirections(result);
+  });
+}
+// requestDirections({lat: 49.28126719999999, lng: -123.0769687}, {lat: 49.2821004, lng: -123.1082745});
+// requestDirections('1833 Frances St. Vancouver, BC', '600 Hastings St. Vancouver, BC');
+  if (data) {
+    for(i = 0; i < data.length; i++) {
+      requestDirections({lat: data[i]["lat"], lng: data[i]["lng"]}, {lat: data[i]["end_lat"], lng: data[i]["end_lng"]});
+    }
+  }
+}
