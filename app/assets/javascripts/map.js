@@ -32,7 +32,7 @@ function initMap(data) {
                       '</div>';
 
       makeInfoWindowEvent(map, infowindow, contentString, marker, markerB);
-  }
+    }
   }
 }
 
