@@ -13,6 +13,6 @@ class User < ApplicationRecord
   validates :phone_number, presence: true
 
   def accepted_event?(event_id)
-    events.where(id: event_id).any?
+    accepted_events.where(id: event_id).any?
   end
 end

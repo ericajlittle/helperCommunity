@@ -53,7 +53,7 @@
 </section>
 <% if current_user && @event.user != current_user %>
 
-<% if !current_user.accepted_event?(@event.id) %>
+<% if !@event.users.include?(current_user) %>
   <%= form_for(@event, url: :accept_event, method: :post) do |form| %>
     <button type="submit">Accept</button>
   <% end %>
@@ -63,7 +63,6 @@
 <% end %>
 
 <%end%>
-
 
 
 <p>
