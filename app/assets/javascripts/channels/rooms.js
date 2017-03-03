@@ -1,7 +1,6 @@
 
 $(() => {
   const roomIds = $('.all_subscribed_rooms_id').data('id');
-  console.log('imhere');
   // connect with each room
   roomIds.forEach((id) => {
     App.room = App.cable.subscriptions.create ({
@@ -15,7 +14,7 @@ $(() => {
           console.log(`Damn it, I am disconnected with Room ${id}...`);
         },
         received: function(data) {
-          console.log(`I received ${data}`);
+          console.log(`I received ${data.content}`);
         }
     });
   });
@@ -30,6 +29,7 @@ function submitNewMessage() {
       const content = event.target.value;
       const chatroomId = $this.data('roomId');
       const userId = $this.data('userId');
+      console.log(content, chatroomId, userId);
       App.room.send({content: content, room_id: chatroomId, user_id: userId});
       $this.val("");
     }

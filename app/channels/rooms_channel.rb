@@ -7,6 +7,7 @@ class RoomsChannel < ApplicationCable::Channel
 
   def receive(data)
     message = Message.create(content: data['content'], user_id: data['user_id'], room_id: data['room_id'])
+    ActionCable.server.broadcast "rooms_#{message.room_id}", {content: message.content, user_id: message.user_id, room_id: message.room_id}
   end
 
 end
