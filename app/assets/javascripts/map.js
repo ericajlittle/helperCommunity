@@ -220,7 +220,9 @@ $(function() {
     url: "/events",
     dataType: "json"
   }).done(function(data) {
-    initMap(data);
+    if (window.google) {
+      initMap(data);
+    }
   });
 });
 

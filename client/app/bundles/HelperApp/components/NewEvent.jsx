@@ -30,55 +30,55 @@ export default class NewEvent extends React.Component {
     return (
       <div id="modal-crev" className="modal">
         <form method="post" action="/events" id="create-event">
-        <div className="modal-background"></div>
-        <div className="modal-card">
-          <header className="modal-card-head">
-            <p className="modal-card-title">Create a New Event</p>
-            <button className="delete"></button>
-          </header>
+          <div className="modal-background"></div>
+          <div className="modal-card">
+            <header className="modal-card-head">
+              <p className="modal-card-title">Create a New Event</p>
+              <button className="delete"></button>
+            </header>
 
-          <section className="modal-card-body">
-            <div className="form-group">
-              <label className="label required">Title:</label>
-              <p className="control">
-                <input ref='title' placeholder='LHL Demo Day' className='input' />
-              </p>
-            </div>
+            <section className="modal-card-body">
+              <div className="form-group">
+                <label className="label required">Title:</label>
+                <p className="control">
+                  <input name='event[title]' placeholder='LHL Demo Day' className='input' />
+                </p>
+              </div>
 
-            <div className="form-group">
-              <label className="label required">Description:</label>
-              <p className="control">
-                <textarea ref='description' className='textarea' placeholder='Help moving tables and chairs' ></textarea>
-              </p>
-            </div>
+              <div className="form-group">
+                <label className="label required">Description:</label>
+                <p className="control">
+                  <textarea name='event[description]' className='textarea' placeholder='Help moving tables and chairs' ></textarea>
+                </p>
+              </div>
 
-            <div className="form-group">
-              <label className="label required">Date:</label>
-              <p className="control">
-                <input ref='scheduled_at' type="datetime-local" name="bday" className='input' />
-              </p>
-            </div>
+              <div className="form-group">
+                <label className="label required">Date:</label>
+                <p className="control">
+                  <input name='event[scheduled_at]' type="datetime-local" className='input' />
+                </p>
+              </div>
 
-            <div className="form-group">
-              <label className="label required">Address:</label>
-              <p className="control">
-                <input ref='address' className='input' placeholder='128 W. Hastings' />
-              </p>
-            </div>
+              <div className="form-group">
+                <label className="label required">Address:</label>
+                <p className="control">
+                  <input name='event[address]' className='input' placeholder='128 W. Hastings' />
+                </p>
+              </div>
 
-            <div className="form-group">
-              <label className="label required">City:</label>
-              <p className="control">
-                <input ref='city' className='input' placeholder='Vancouver' />
-              </p>
-            </div>
-          </section>
+              <div className="form-group">
+                <label className="label required">City:</label>
+                <p className="control">
+                  <input name='event[city]' className='input' placeholder='Vancouver' />
+                </p>
+              </div>
+            </section>
 
-          <footer className="modal-card-foot">
-            <button onClick={this.handleClick} className="button">Create Event</button>
-            <a className="button">Cancel</a>
-          </footer>
-        </div>
+            <footer className="modal-card-foot">
+              <button onClick={this.handleClick} className="button">Create Event</button>
+              <a className="button">Cancel</a>
+            </footer>
+          </div>
         </form>
       </div>
     );
