@@ -38,6 +38,7 @@ class EventsController < ApplicationController
         :description,
         :scheduled_at,
         :address,
+        :end_address,
         :city
       )
 
