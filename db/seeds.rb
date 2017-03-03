@@ -70,8 +70,8 @@ e1 = u1.events.create!({
   lng: -123.107174,
   status: false,
   description: Faker::Hipster.paragraph(4),
-  end_lat: 49.28102759999999,
-  end_lng: -123.0913713,
+  end_lat: 49.38102759999999,
+  end_lng: -123.1913713,
   scheduled_at: 10.days.from_now
 })
 

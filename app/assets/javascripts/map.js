@@ -116,32 +116,76 @@ $(function() {
 
 
 function initMap(data) {
-var uluru = {lat: 49.2821004, lng: -123.1082745};
-var map = new google.maps.Map(document.getElementById("map"),{
-  zoom: 12,
-  center: uluru
-});
-function renderDirections(result) {
-  var directionsRenderer = new google.maps.DirectionsRenderer;
-  directionsRenderer.setMap(map);
-  directionsRenderer.setDirections(result);
-}
-
-var directionsService = new google.maps.DirectionsService;
-function requestDirections(start, end) {
-  directionsService.route({
-    origin: start,
-    destination: end,
-    travelMode: google.maps.DirectionsTravelMode.DRIVING
-  }, function(result) {
-    renderDirections(result);
+  var uluru = {lat: 49.2821004, lng: -123.1082745};
+  var map = new google.maps.Map(document.getElementById("map"),{
+    zoom: 12,
+    center: uluru
   });
-}
+
+  var contentString;
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString,
+    maxWidth: 300
+  });
+
+  function renderDirections(result) {
+    var directionsRenderer = new google.maps.DirectionsRenderer({
+      polylineOptions: {
+        strokeColor: "red"
+      },
+      suppressMarkers:true
+    });
+    directionsRenderer.setMap(map);
+    directionsRenderer.setDirections(result);
+  }
+
+  var directionsService = new google.maps.DirectionsService;
+  function requestDirections(start, end) {
+    directionsService.route({
+      origin: start,
+      destination: end,
+      travelMode: google.maps.DirectionsTravelMode.DRIVING
+    }, function(result) {
+      renderDirections(result);
+    });
+  }
 // requestDirections({lat: 49.28126719999999, lng: -123.0769687}, {lat: 49.2821004, lng: -123.1082745});
 // requestDirections('1833 Frances St. Vancouver, BC', '600 Hastings St. Vancouver, BC');
   if (data) {
     for(i = 0; i < data.length; i++) {
+
+      var markerA = new google.maps.Marker({
+        position: {lat: data[i]["lat"], lng: data[i]["lng"]},
+        title: "Origin",
+        label: "A",
+        map: map
+      });
+      var markerB = new google.maps.Marker({
+        position: {lat: data[i]["end_lat"], lng: data[i]["end_lng"]},
+        title: "Destination",
+        label: "B",
+        map: map
+      });
+
+      contentString = '<div class="event-title">' +
+                      '<a href = "/events/' + data[i]['id'] + '">' + data[i]['title'] + '</a>' +
+                      '<p>' + data[i]['description'] + '</p>'
+                      '</div>';
+
       requestDirections({lat: data[i]["lat"], lng: data[i]["lng"]}, {lat: data[i]["end_lat"], lng: data[i]["end_lng"]});
+
+      makeInfoWindowEvent(map, infowindow, contentString, markerA, markerB);
     }
   }
+}
+function makeInfoWindowEvent(map, infowindow, contentString, markerA, markerB) {
+  google.maps.event.addListener(markerA, 'click', function() {
+    infowindow.setContent(contentString);
+    infowindow.open(map, markerA);
+  });
+    google.maps.event.addListener(markerB, 'click', function() {
+    infowindow.setContent(contentString);
+    infowindow.open(map, markerB);
+  });
 }
