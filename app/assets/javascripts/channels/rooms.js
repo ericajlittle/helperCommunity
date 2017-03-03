@@ -1,5 +1,5 @@
-
-$(() => {
+// remember to use turbolinks:load to make jquery effective
+$(document).on('turbolinks:load', () => {
   const roomIds = $('.all_subscribed_rooms_id').data('id');
   // connect with each room
   roomIds.forEach((id) => {
