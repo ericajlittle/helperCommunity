@@ -1,48 +1,86 @@
-// function initMap(data) {
-//   var uluru = {lat: 49.2821004, lng: -123.1082745};
+$(function() {
+  $.ajax({
+    url: "/events",
+    dataType: "json"
+  }).done(function(data) {
+    initMap(data);
+  });
+});
 
-//   var map = new google.maps.Map(document.getElementById('map'), {
-//     zoom: 12,
-//     center: uluru
-//   });
 
-//   var contentString;
 
-//   var infowindow = new google.maps.InfoWindow({
-//     content: contentString,
-//     maxWidth: 300
-//   });
+function initMap(data) {
+  window.App || (window.App = {});
 
-//   if (data) {
-//     for(i = 0; i < data.length; i++) {
-//       var marker = new google.maps.Marker({
-//         position: {lat: data[i]["lat"], lng: data[i]["lng"]},
-//         map: map
-//       });
+  var mapContainer = document.getElementById("map");
+  if (!mapContainer) return;
 
-//       contentString = '<div class="event-title">' +
-//                       '<a href = "/events/' + data[i]['id'] + '">' + data[i]['title'] + '</a>' +
-//                       '<p>' + data[i]['description'] + '</p>'
-//                       '</div>';
+  var vancouver = {lat: 49.2821004, lng: -123.1082745};
+  var map = new google.maps.Map(mapContainer, {
+    zoom: 12,
+    center: vancouver
+  });
 
-//       makeInfoWindowEvent(map, infowindow, contentString, marker);
-//   }
-//   }
-// }
+  window.App.map = map;
 
-// function makeInfoWindowEvent(map, infowindow, contentString, marker) {
-//   google.maps.event.addListener(marker, 'click', function() {
-//     infowindow.setContent(contentString);
-//     infowindow.open(map, marker);
-//   });
-// }
+  if (data) {
+    for(i = 0; i < data.length; i++) {
 
-// $(function() {
-//   $.ajax({
-//     url: "/events",
-//     dataType: "json"
-//   }).done(function(data) {
-//     initMap(data);
-//   });
-// });
+      addEventToMap(map, data[i]);
 
+    }
+  }
+}
+
+function requestDirections(map, start, end) {
+  var directionsService = new google.maps.DirectionsService;
+  directionsService.route({
+    origin: start,
+    destination: end,
+    travelMode: google.maps.DirectionsTravelMode.DRIVING
+  }, function(result) {
+    renderDirections(map, result);
+  });
+}
+
+function renderDirections(map, result) {
+  var directionsRenderer = new google.maps.DirectionsRenderer({
+    polylineOptions: {
+      strokeColor: "red"
+    },
+    suppressMarkers:true
+  });
+  directionsRenderer.setMap(map);
+  directionsRenderer.setDirections(result);
+}
+
+function addEventToMap(map, event) {
+  var markerA = addMarker(map, event, event.lat, event.lng, true);
+  var markerB = addMarker(map, event, event.end_lat, event.end_lng, false);
+
+  requestDirections(map,
+    {lat: event["lat"], lng: event["lng"]},
+    {lat: event["end_lat"], lng: event["end_lng"]});
+}
+
+function addMarker(map, event, lat, lng, isOrigin) {
+  var marker = new google.maps.Marker({
+    position: {lat, lng},
+    title: isOrigin ? "Origin" : "Destination",
+    label: isOrigin ? "A" : "B",
+    map: map
+  });
+  var contentString = '<div class="event-title">' +
+                  '<a href = "/events/' + event['id'] + '">' + event['title'] + '</a>' +
+                  (isOrigin ? "..." : "") +
+                  '<p>' + event['description'] + '</p>'
+                  '</div>';
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString,
+    maxWidth: 300
+  });
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map, marker);
+  });
+  return marker;
+}

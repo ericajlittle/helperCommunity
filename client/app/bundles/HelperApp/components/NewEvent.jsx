@@ -16,11 +16,13 @@ export default class NewEvent extends React.Component {
     var desc = this.refs.description.value;
     var scheduled_at = this.refs.scheduled_at.value;
     var address = this.refs.address.value;
+    var end_address = this.refs.end_address.value;
     const eventData = {
       title: title,
       description: desc,
       scheduled_at: scheduled_at,
-      address: address
+      address: address,
+      end_address: end_address
     }
     this.props.createEvent(eventData)
   }
@@ -35,6 +37,7 @@ export default class NewEvent extends React.Component {
         <input ref='description' placeholder='Enter a Description' />
         <input ref='scheduled_at' placeholder='yyyy-mm-dd, --:-- --' type="datetime-local" name="bday" />
         <input ref='address' placeholder='Enter the Address' />
+        <input ref='end_address' placeholder='Enter Destination Address' />
         <button  onClick={this.handleClick}>Submit</button>
 
       </div>
