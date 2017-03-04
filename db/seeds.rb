@@ -22,7 +22,7 @@ end
 
 ## USERS
 
-puts "Re-creating Products ..."
+puts "Re-creating Users ..."
 
 User.destroy_all
 
@@ -30,30 +30,30 @@ u1 = User.create!({
   name:  'Obama',
   email: '1@1.1',
   password_digest: '1111',
-  image: open_asset('Obama.jpg'),
+  photo: open_asset('Obama.jpg'),
   description: Faker::Hipster.paragraph(4),
-  DoB: 1911-11-11,
-  phone_number: 111-111-1111
+  DoB: 50.years.from_now,
+  phone_number: '+11111111111'
 })
 
 u2 = User.create!({
   name:  'Beyonce',
   email: '2@2.2',
   password_digest: '2222',
-  image: open_asset('beyonce.jpg'),
+  photo: open_asset('beyonce.jpg'),
   description: Faker::Hipster.paragraph(4),
-  DoB: 1922-22-22,
-  phone_number: 222-222-2222
+  DoB: 50.years.from_now,
+  phone_number: '+12222222222'
 })
 
 u3 = User.create!({
   name:  'Peter',
   email: '3@3.3',
   password_digest: '3333',
-  image: open_asset('peter.jpg'),
+  photo: open_asset('peter.jpg'),
   description: Faker::Hipster.paragraph(4),
-  DoB: 1933-33-33,
-  phone_number: 333-333-3333
+  DoB: 50.years.from_now,
+  phone_number: '+13333333333'
 })
 
 puts "DONE!"
@@ -66,32 +66,38 @@ Event.destroy_all
 
 e1 = u1.events.create!({
   title: 'Scorn Trump',
+  address: '600 Hastings St. Vancouver',
   lat: 49.281049,
   lng: -123.107174,
   status: false,
   description: Faker::Hipster.paragraph(4),
+  end_address: '800 Hastings St. Vancouver',
   end_lat: 49.38102759999999,
   end_lng: -123.1913713,
   scheduled_at: 10.days.from_now
 })
 
-e2 = u1.events.create!({
+e2 = u2.events.create!({
   title: 'Buy a speaker',
+  address: '1800 Frances St. Vancouver',
   lat: 49.284557,
   lng: -123.10831,
   status: true,
   description: Faker::Hipster.paragraph(4),
+  end_address: '1600 Frances St. Vancouver',
   end_lat: 49.28102759999999,
   end_lng: -123.0913713,
   scheduled_at: 15.days.from_now
 })
 
-e3 = u1.events.create!({
+e3 = u3.events.create!({
   title: 'Invest another Facebook',
+  address: '1800 Main St. Vancouver',
   lat: 49.28,
   lng: -123,
   status: false,
   description: Faker::Hipster.paragraph(4),
+  end_address: '1300 Frances St. Vancouver',
   end_lat: 49.2865591,
   end_lng: -123.1164145,
   scheduled_at: 15.days.from_now

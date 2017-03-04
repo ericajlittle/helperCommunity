@@ -31,7 +31,7 @@ export default class NewEvent extends React.Component {
     return (
       <div>
 
-        <h3>Welcome to Event Management System</h3>
+        <h3>Create a New Event</h3>
 
         <input ref='title' placeholder='Enter the Event Title' />
         <input ref='description' placeholder='Enter a Description' />

@@ -9,12 +9,18 @@ class Event < ApplicationRecord
   # validates :scheduled_at, presence: true
   # validates :location, presence: true
 
-  # geocoded_by :address, :latitude  => :lat, :longitude => :lng
-  # geocoded_by :end_address, latitude: :end_lat, longitude: :end_lng
+  geocoded_by :address, :latitude  => :lat, :longitude => :lng
+  geocoded_by :end_address, latitude: :end_lat, longitude: :end_lng
 
-  # after_validation :geocode
+  after_validation :geocode
 
   before_save :geocode_endpoints
+
+  # after_validation :geocode
+  has_and_belongs_to_many :users
+
+  has_attached_file :photo, :styles => { :medium =>     "300x300#", :thumb => "200x200#" }
+  validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
 
 private
   #To enable Geocoder to works with multiple locations

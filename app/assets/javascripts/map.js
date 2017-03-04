@@ -84,14 +84,3 @@ function addMarker(map, event, lat, lng, isOrigin) {
   });
   return marker;
 }
-
-// function makeInfoWindowEvent(map, infowindow, contentString, markerA, markerB) {
-//   google.maps.event.addListener(markerA, 'click', function() {
-//     infowindow.setContent(contentString);
-//     infowindow.open(map, markerA);
-//   });
-//     google.maps.event.addListener(markerB, 'click', function() {
-//     infowindow.setContent(contentString);
-//     infowindow.open(map, markerB);
-//   });
-// }
