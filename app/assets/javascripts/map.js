@@ -71,9 +71,9 @@ function addMarker(map, event, lat, lng, isOrigin) {
     map: map
   });
   var contentString = '<div class="event-title">' +
-                  '<a href = "/events/' + event['id'] + '">' + event['title'] + '</a>' +
-                  (isOrigin ? "..." : "") +
-                  '<p>' + event['description'] + '</p>'
+                  '<a href="/events/' + event['id'] + '">' + event['title'] + '</a>' +
+                  (isOrigin ? `<br><br><p>${event.address}</p>` : `<p>${event.end_address}</p>`) +
+                  '<p>' + event['description'] + '</p>' +
                   '</div>';
   var infowindow = new google.maps.InfoWindow({
     content: contentString,
