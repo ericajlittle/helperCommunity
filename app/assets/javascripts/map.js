@@ -44,6 +44,15 @@ $(function() {
 });
 
 
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 function initMap(data) {
   window.App || (window.App = {});
 
@@ -239,7 +248,7 @@ function requestDirections(map, start, end) {
 function renderDirections(map, result) {
   var directionsRenderer = new google.maps.DirectionsRenderer({
     polylineOptions: {
-      strokeColor: "red"
+      strokeColor: getRandomColor()
     },
     suppressMarkers:true
   });
@@ -266,9 +275,9 @@ function addMarker(map, event, lat, lng, isOrigin) {
   });
 
   var contentString = '<div class="event-title">' +
-                  '<a href = "/events/' + event['id'] + '">' + event['title'] + '</a>' +
-                  (isOrigin ? "..." : "") +
-                  '<p>' + event['description'] + '</p>'
+                  '<a href="/events/' + event['id'] + '">' + event['title'] + '</a>' +
+                  (isOrigin ? `<br><br><p>${event.address}</p>` : `<p>${event.end_address}</p>`) +
+                  '<p>' + event['description'] + '</p>' +
                   '</div>';
 
   var infowindow = new google.maps.InfoWindow({
