@@ -1,39 +1,41 @@
-// remember to use turbolinks:load to make jquery effective
-$(document).on('turbolinks:load', () => {
+$(() => {
+  // get connected rooms once connected. Buried hooker in top_nav_bar
   const roomIds = $('.all_subscribed_rooms_id').data('id');
+  window.rooms = [];
   // connect with each room
-  roomIds.forEach((id) => {
-    // I overwrite App.room in this code, it is not good, but it does not affect the result
-    // because room_id is attached and used inside the message.
-    App.room = App.cable.subscriptions.create ({
-        channel: 'RoomsChannel',
-        room_id: id
-      }, {
-        connected: function () {
-          console.log(`Woooo, I am connected with Room ${id}!`);
-        },
-        disconnected: function () {
-          console.log(`Damn it, I am disconnected with Room ${id}...`);
-        },
-        received: function(data) {
-          console.log(`I received ${data.room_id}`);
+  roomIds.forEach((ele) => {
+    console.log('FOREACH GOT EXECUTED!!!');
+    window.rooms[ele] = App.cable.subscriptions.create ({
+      channel: 'RoomsChannel',
+      room_id: ele
+    }, {
+      connected: function () {
+        console.log(`Woooo, I am connected with Room ${ele}!`);
+      },
+      disconnected: function () {
+        console.log(`Damn it, I am disconnected with Room ${ele}...`);
+      },
+      received: function(data) {
+        // receive data, judge if the data should be appende into this room
+        if(data.room_id === Number(location.pathname.split('').pop())) {
+          $('#messages').append(`<div>${data.content}<div>`);
         }
+      }
     });
   });
-  // prepare to send message
-  submitNewMessage();
 });
 
-function submitNewMessage() {
-  $this = $('#message-input');
-  $this.keydown(function(event) {
+// remember to use turbolinks:load to make jquery effective
+// add event listener to be ready to send out message
+$(document).on('turbolinks:load', () => {
+  $('#message-input').focus().on('keydown', function(event) {
+    const $this = $(this);
     if (event.keyCode === 13) {
       const content = event.target.value;
       const chatroomId = $this.data('roomId');
       const userId = $this.data('userId');
-      console.log(content, chatroomId, userId);
-      App.room.send({content: content, room_id: chatroomId, user_id: userId});
+      window.rooms[chatroomId].send({content: content, room_id: chatroomId, user_id: userId});
       $this.val("");
     }
   });
-}
+});
