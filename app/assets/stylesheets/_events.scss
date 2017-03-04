@@ -1,0 +1,22 @@
+.event-header {
+  background: url(image-path('community1.jpg')) center -50px no-repeat;
+  background-size: cover;
+  height: 300px;
+}
+
+.event-content {
+  padding: 15px 0;
+}
+
+.user-info {
+  .user-name {
+    display: block;
+    text-align: center;
+  }
+
+  .avatar {
+    border-radius: 10px;
+    margin: 0 auto 5px;
+  }
+}
+
