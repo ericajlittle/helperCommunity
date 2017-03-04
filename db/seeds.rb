@@ -66,28 +66,40 @@ Event.destroy_all
 
 e1 = u1.events.create!({
   title: 'Scorn Trump',
+  address: '600 Hastings St. Vancouver',
   lat: 49.281049,
   lng: -123.107174,
   status: false,
   description: Faker::Hipster.paragraph(4),
+  end_address: '800 Hastings St. Vancouver',
+  end_lat: 49.38102759999999,
+  end_lng: -123.1913713,
   scheduled_at: 10.days.from_now
 })
 
 e2 = u2.events.create!({
   title: 'Buy a speaker',
+  address: '1800 Frances St. Vancouver',
   lat: 49.284557,
   lng: -123.10831,
   status: true,
   description: Faker::Hipster.paragraph(4),
+  end_address: '1600 Frances St. Vancouver',
+  end_lat: 49.28102759999999,
+  end_lng: -123.0913713,
   scheduled_at: 15.days.from_now
 })
 
 e3 = u3.events.create!({
   title: 'Invest another Facebook',
+  address: '1800 Main St. Vancouver, BC',
   lat: 49.28,
   lng: -123,
   status: false,
   description: Faker::Hipster.paragraph(4),
+  end_address: '1300 Frances St. Vancouver',
+  end_lat: 49.2865591,
+  end_lng: -123.1164145,
   scheduled_at: 15.days.from_now
 })
 

@@ -26,7 +26,7 @@ class EventsController < ApplicationController
     if @event.save
       render json:@event
     else
-      render :new
+      render json:{ result: 'failed to save', errors: @event.errors.full_messages }, status: 400
     end
   end
 
@@ -58,6 +58,7 @@ class EventsController < ApplicationController
         :photo,
         :scheduled_at,
         :address,
+        :end_address,
         :city
       )
 

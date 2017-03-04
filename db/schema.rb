@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(version: 20170303013659) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "end_address"
+    t.float    "end_lat"
+    t.float    "end_lng"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
