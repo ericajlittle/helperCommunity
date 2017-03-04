@@ -1,11 +1,42 @@
 <section class="profile">
   <h1>Member Profile</h1>
+  </p>
+
+  <p>
+    <%= image_tag @user.photo.url(:thumb) %>
+  </p>
+
   <p>
     <strong>Name:</strong>
     <%= @user.name %>
-  </p>
+
   <p>
     <strong>Description:</strong>
     <%= @user.description %>
   </p>
 </section>
+
+<section class="events">
+  <br>
+  <h2>Request List</h2>
+  <% @user.events.reverse.each do |event| %>
+    <dl class="hover">
+      <dt><b>Request: </b><%= event.title %></dt>
+      <dd></dd>
+      <dt><b>Description:</b></dt>
+      <dd class="event"><%= event.description %></dd>
+      <dd></dd>
+      <dt><b>Members Attending Event:</b></dt>
+      <dd class="event">
+        <% event.users.each do |x| %>
+          <%= link_to x.name, user_path(x.id) %>
+        <%end%>
+      </dd>
+      <br>
+    </dl>
+  <% end %>
+</section>
+
+<%= render 'form' %>
+
+<%= render 'reviews' %>

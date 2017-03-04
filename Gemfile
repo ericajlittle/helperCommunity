@@ -42,6 +42,12 @@ gem "bulma-rails", "~> 0.3.1"
 #Use Geocoder as a geocoding solution https://github.com/alexreisner/geocoder
 gem 'geocoder'
 
+#Use for image storage
+gem "paperclip", "~> 5.0.0"
+
+#Use for Twillio SMS notificaitons
+gem 'twilio-ruby'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

@@ -30,12 +30,32 @@ class EventsController < ApplicationController
     end
   end
 
+  def accept_event
+    @event = Event.find(params[:id])
+    @event.users << current_user
+    # puts current_user.phone_number
+    # kind of like event.users.push(current_user) & save to db
+    # render text: "Thank you! You will receive an SMS shortly."
+
+    # Instantiate a Twilio client
+      client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
+
+      # Create and send an SMS message
+      client.account.sms.messages.create(
+        from: TWILIO_CONFIG['from'],
+        to: current_user.phone_number,
+        body: "#{current_user.name} has accepted your event."
+      )
+    redirect_to :event
+  end
+
 
   private
     def event_params
       params.require(:event).permit(
         :title,
         :description,
+        :photo,
         :scheduled_at,
         :address,
         :city

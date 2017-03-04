@@ -2,6 +2,8 @@ import React, {PropTypes} from 'react';
 import Map from '../components/Map';
 import NewEvent from '../components/NewEvent';
 
+import ActionCable from 'actioncable';
+
 export default class App extends React.Component {
   // static propTypes = {
   //   name: PropTypes.string.isRequired, // this is passed from the Rails view
@@ -11,9 +13,21 @@ export default class App extends React.Component {
     // this.state = defaultState;
     // How to set initial state in ES6 class syntax
     // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
-    this.state = { name: this.props.name };
+    this.state = {
+      name: this.props.name,
+      events: []
+    };
     // this.handleClick = this.handleClick.bind(this);
     this.createEvent = this.createEvent.bind(this);
+
+    this.cable = ActionCable.createConsumer();
+    console.log(this.cable);
+
+    this.setupSubscription();
+  }
+
+  componentDidMount() {
+    this.getEvents();
   }
 
   // handleClick() {
@@ -36,6 +50,15 @@ export default class App extends React.Component {
   //     }
   //   }); //end of the Ajax call
   // }
+  //
+  getEvents() {
+    $.ajax({
+      url: "/events",
+      dataType: "json"
+    }).done((data) => {
+      this.setState({ events: data })
+    });
+  }
 
   createEvent(eventData) {
     // ajax call to save event to db
@@ -58,8 +81,32 @@ export default class App extends React.Component {
     return (
       <div>
         <NewEvent createEvent={this.createEvent} />
-        <Map />
+        <Map events={ this.state.events } />
       </div>
     );
+  }
+
+  setupSubscription(){
+
+    this.event = this.cable.subscriptions.create("EventChannel", {
+      // event_id: this.state.event.id,
+
+      connected: () => {
+        console.log("connected??");
+        // setTimeout(() => this.perform('follow',
+        //                               { message_id: this.message_id}), 1000 );
+      },
+
+      received: (data) => {
+        console.log('received', data);
+        this.getEvents();
+
+        // this.updateCommentList(data.comment);
+      },
+
+      updateCommentList: this.updateCommentList
+
+    });
+    console.log('this.event', this.event);
   }
 }

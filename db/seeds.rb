@@ -22,7 +22,7 @@ end
 
 ## USERS
 
-puts "Re-creating Products ..."
+puts "Re-creating Users ..."
 
 User.destroy_all
 
@@ -30,30 +30,30 @@ u1 = User.create!({
   name:  'Obama',
   email: '1@1.1',
   password_digest: '1111',
-  image: open_asset('Obama.jpg'),
+  photo: open_asset('Obama.jpg'),
   description: Faker::Hipster.paragraph(4),
-  DoB: 1911-11-11,
-  phone_number: 111-111-1111
+  DoB: 50.years.from_now,
+  phone_number: '+11111111111'
 })
 
 u2 = User.create!({
   name:  'Beyonce',
   email: '2@2.2',
   password_digest: '2222',
-  image: open_asset('beyonce.jpg'),
+  photo: open_asset('beyonce.jpg'),
   description: Faker::Hipster.paragraph(4),
-  DoB: 1922-22-22,
-  phone_number: 222-222-2222
+  DoB: 50.years.from_now,
+  phone_number: '+12222222222'
 })
 
 u3 = User.create!({
   name:  'Peter',
   email: '3@3.3',
   password_digest: '3333',
-  image: open_asset('peter.jpg'),
+  photo: open_asset('peter.jpg'),
   description: Faker::Hipster.paragraph(4),
-  DoB: 1933-33-33,
-  phone_number: 333-333-3333
+  DoB: 50.years.from_now,
+  phone_number: '+13333333333'
 })
 
 puts "DONE!"

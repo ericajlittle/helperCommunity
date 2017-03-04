@@ -8,9 +8,9 @@
         Signup
       </a>
       <div>
-        <%= form_for :user, url: '/users' do |f| %>
+        <%= form_for :user, url: '/users', html: { multipart: true } do |f| %>
           <ul>
-              <li>Image: <%= f.text_field :image %></li>
+              <li>Image: <%= f.file_field :photo %> </li>
               <li>Name: <%= f.text_field :name %></li>
               <li>Email: <%= f.text_field :email %></li>
               <li>Description: <%= f.text_area :description %></li>
