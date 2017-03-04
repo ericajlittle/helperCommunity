@@ -22,6 +22,8 @@ class Event < ApplicationRecord
   has_attached_file :photo, :styles => { :medium =>     "300x300#", :thumb => "200x200#" }
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
 
+  after_create_commit { ActionCable.server.broadcast 'events', {message: self.to_json}}
+
 private
   #To enable Geocoder to works with multiple locations
   def geocode_endpoints

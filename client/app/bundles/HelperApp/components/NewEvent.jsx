@@ -35,8 +35,8 @@ export default class NewEvent extends React.Component {
 
         <input ref='title' placeholder='Enter the Event Title' />
         <input ref='description' placeholder='Enter a Description' />
-        <input ref='scheduled_at' placeholder='Enter Event Date' type="datetime-local" name="bday" />
-        <input ref='address' placeholder='Enter Origin Address' />
+        <input ref='scheduled_at' placeholder='yyyy-mm-dd, --:-- --' type="datetime-local" name="bday" />
+        <input ref='address' placeholder='Enter the Address' />
         <input ref='end_address' placeholder='Enter Destination Address' />
         <button  onClick={this.handleClick}>Submit</button>
 

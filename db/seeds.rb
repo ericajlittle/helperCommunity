@@ -92,7 +92,7 @@ e2 = u2.events.create!({
 
 e3 = u3.events.create!({
   title: 'Invest another Facebook',
-  address: '1800 Main St. Vancouver',
+  address: '1800 Main St. Vancouver, BC',
   lat: 49.28,
   lng: -123,
   status: false,
