@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
-import Map from '../components/Map';
 import NewEvent from '../components/NewEvent';
+
+import ActionCable from 'actioncable';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: this.props.name };
     this.createEvent = this.createEvent.bind(this);
   }
 
@@ -29,7 +29,6 @@ export default class App extends React.Component {
     return (
       <div>
         <NewEvent createEvent={this.createEvent} />
-        <Map />
       </div>
     );
   }
