@@ -11,6 +11,7 @@
 
   &.user {
     cursor: pointer;
+    color: $brandcolor;
   }
 }
 
@@ -23,7 +24,7 @@
   padding: 15px;
   position: absolute;
   text-align: left;
-  top: 47px;
+  top: $nav-height;
   right: 0;
 }
 
@@ -37,5 +38,14 @@
 }
 
 .create-event {
-  margin: 8px 15px 0;
+  margin: 20px 15px 0;
+}
+
+.nav {
+  background-color: #fff;
+}
+
+.nav-item img {
+  height: 60px;
+  max-height: 100%;
 }

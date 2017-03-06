@@ -21,15 +21,38 @@ $(function() {
     }
   });
 
-  $(window).resize(function() {
-    var height = $(window).height() - $('nav').height() - $('.index-map .container').height();
-    $("#map").css('height', height);
-    google.maps.event.trigger(map,'resize')
-    console.log(height);
-  });
+  // Google Map resize
+  // $(window).resize(function() {
+  //   var height = $(window).height() - $('nav').height() - $('.index-map .container').height();
+  //   $("#map").css('height', height);
+  //   google.maps.event.trigger(map,'resize')
+  //   console.log(height);
+  // });
 
   // $(window).trigger('resize');
-  var height = $(window).height() - $('nav').height() - $('.index-map .container').height() - 10 + "px";
-  $("#map").css('height', height);
-  console.log(height);
-})
+  // var height = $(window).height() - $('nav').height();
+  // $(".index-map").css('height', height);
+  // // console.log(height);
+
+  // var mapHeight = $(window).height();
+  // $("#map").css('height', height);
+  var start = [0, 0];
+  $(".search-events").click(function(e) {
+    e.stopPropagation();
+    $(".index-map").slideDown();
+  });
+
+  function goToSlideIndex (index, instant) {
+    if (index < 0) index = 0;
+    if (index > this.items.size() - 1) index = this.items.size() - 1;
+    this.currentIndex = index;
+    var targetScroll = index * this.element.height();
+    if (instant) {
+      this.scrollTarget.stop().scrollTop(targetScroll);
+    } else {
+      this.scrollTarget.stop().animate({
+        scrollTop: targetScroll
+      });
+    }
+  }
+});

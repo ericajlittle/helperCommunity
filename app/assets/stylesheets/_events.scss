@@ -1,11 +1,15 @@
 .event-header {
-  background: url(image-path('community1.jpg')) center -50px no-repeat;
+  background: url(image-path('index.jpg')) center -100px no-repeat;
   background-size: cover;
   height: 300px;
 }
 
 .event-content {
   padding: 15px 0;
+
+  .event-title {
+    color: $brandcolor;
+  }
 }
 
 .user-info {
@@ -15,8 +19,30 @@
   }
 
   .avatar {
-    border-radius: 10px;
+    border-radius: 128px;
     margin: 0 auto 5px;
+  }
+
+  .user-name {
+    color: $brandcolor;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 
+.event-info {
+  .fa {
+    vertical-align: middle;
+  }
+
+  .event-icon {
+    font-size: $size-6;
+  }
+}
+
+.event-head {
+  border-bottom: solid 1px #eee;
+}
