@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   resources :rooms, only: [:index, :show, :create]
 
+  resource  :verifications
+
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
@@ -22,5 +24,7 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
 
   mount ActionCable.server => '/cable'
+
+  post '/events/:id/accept' => 'events#accept_event', as: :accept_event
 
 end

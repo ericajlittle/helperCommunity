@@ -3,40 +3,83 @@ import React, {PropTypes} from 'react';
 export default class NewEvent extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = defaultState;
-    // How to set initial state in ES6 class syntax
-    // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
-    this.state = { name: this.props.name };
+    this.state = {
+      name: this.props.name
+    };
     this.handleClick = this.handleClick.bind(this);
-
   }
 
   handleClick() {
-    var title = this.refs.title.value;
-    var desc = this.refs.description.value;
-    var scheduled_at = this.refs.scheduled_at.value;
-    var address = this.refs.address.value;
-    const eventData = {
-      title: title,
-      description: desc,
-      scheduled_at: scheduled_at,
-      address: address
-    }
-    this.props.createEvent(eventData)
+
+    // const title = this.refs.title.value;
+    // const desc = this.refs.description.value;
+    // const scheduled_at = this.refs.scheduled_at.value;
+    // const address = this.refs.address.value;
+    // const city = this.refs.city.value;
+
+    // const eventData = {
+    //   title: title,
+    //   description: desc,
+    //   scheduled_at: scheduled_at,
+    //   address: address,
+    //   city: city
+    // }
+    // this.props.createEvent(eventData)
   }
 
   render() {
     return (
-      <div>
+      <div id="modal-crev" className="modal">
+        <form method="post" action="/events" id="create-event">
+          <div className="modal-background"></div>
+          <div className="modal-card">
+            <header className="modal-card-head">
+              <p className="modal-card-title">Create a New Event</p>
+            </header>
 
-        <h3>Welcome to Event Management System</h3>
+            <section className="modal-card-body">
+              <div className="form-group">
+                <label className="label required">Title:</label>
+                <p className="control">
+                  <input name='event[title]' placeholder='LHL Demo Day' className='input' />
+                </p>
+              </div>
 
-        <input ref='title' placeholder='Enter the Event Title' />
-        <input ref='description' placeholder='Enter a Description' />
-        <input ref='scheduled_at' placeholder='Enter Event Date' type="datetime-local" name="bday" />
-        <input ref='address' placeholder='Enter the Address' />
-        <button  onClick={this.handleClick}>Submit</button>
+              <div className="form-group">
+                <label className="label required">Description:</label>
+                <p className="control">
+                  <textarea name='event[description]' className='textarea' placeholder='Help moving tables and chairs' ></textarea>
+                </p>
+              </div>
 
+              <div className="form-group">
+                <label className="label required">Date:</label>
+                <p className="control">
+                  <input name='event[scheduled_at]' type="datetime-local" className='input' />
+                </p>
+              </div>
+
+              <div className="form-group">
+                <label className="label required">Address:</label>
+                <p className="control">
+                  <input name='event[address]' className='input' placeholder='128 W. Hastings' />
+                </p>
+              </div>
+
+              <div className="form-group">
+                <label className="label required">City:</label>
+                <p className="control">
+                  <input name='event[city]' className='input' placeholder='Vancouver' />
+                </p>
+              </div>
+            </section>
+
+            <footer className="modal-card-foot">
+              <button onClick={this.handleClick} className="button">Create Event</button>
+              <a className="button">Cancel</a>
+            </footer>
+          </div>
+        </form>
       </div>
     );
   }

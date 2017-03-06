@@ -1,25 +1,11 @@
-<% content_for(:header) do %>
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE1Boy-A_UgLPNoOY7kOuj-6Yju4cEJCE">
-  </script>
-<% end %>
-<%= react_component("App", props:{name:'App'}) %>
+<%= react_component("App") %>
 
-<!-- <section class="index-map">
-
-  <div class="columns">
-    <div class="column">
-      Community Enagement Resource, for members of the community supporting eachother through goodwill.
-      Beautiful text about our app
-    </div>
+<section class="index-map">
+  <div class="container mission">
+      Community Engagement Resource, for members of the community supporting eachother through goodwill.
+      <br />Beautiful text about our app
   </div>
 
-  <div class="columns">
-    <div class="column">
-      <div id="map"></div>
+  <div id="map"></div>
 
-
-    </div>
-  </div>
-
-</section> -->
+</section>

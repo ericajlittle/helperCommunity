@@ -14,6 +14,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require cable
 //= require map
+//= require bulma
