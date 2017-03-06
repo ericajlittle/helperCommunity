@@ -17,3 +17,4 @@
 //= require cable
 //= require map
 //= require bulma
+//= require index

@@ -75,7 +75,7 @@ export default class NewEvent extends React.Component {
             </section>
 
             <footer className="modal-card-foot">
-              <button onClick={this.handleClick} className="button">Create Event</button>
+              <button className="button">Create Event</button>
               <a className="button">Cancel</a>
             </footer>
           </div>
