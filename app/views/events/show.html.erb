@@ -9,11 +9,11 @@
     &nbsp;
   </header>
 
-  <section class="event-content container">
-    <div class="columns event-head">
-      <div class="user-info column is-2">
-        <%= image_tag("irina.jpg", class: "avatar image is-128x128") %>
-        <%= link_to @event.user.name, user_path(@event.user.id), class: "user-name" %>
+  <article class="event-content container">
+    <section class="columns">
+      <div class="user-info column is-one-quarter">
+        <%= image_tag @event.user.photo.url(:thumb), class: 'avatar image is-128x128' %>
+        <span class="user-name"> <%=link_to @event.user.name, user_path(@event.user_id) %></span>
       </div>
 
       <div class="event-info column is-10">
