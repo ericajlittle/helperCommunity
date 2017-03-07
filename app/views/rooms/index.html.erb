@@ -1,7 +1,7 @@
 <h1> Dear <%= current_user.name %>, you sent out the following help requests. Feel free to chat with people who would like to chat with you! </h1>
 
 <% @events.each do |e| %>
-  <% if current_user.id == e.user.id %>
+  <% if current_user.id == e.user.id && @rooms.find_by(event_id: e.id) %>
     <%= link_to room_path(@rooms.find_by(event_id: e.id).id) do %>
       You have requested help: <%= e.title %>.
     <% end %>
