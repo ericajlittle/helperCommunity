@@ -1,40 +1,42 @@
 <% content_for(:header) do %>
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE1Boy-A_UgLPNoOY7kOuj-6Yju4cEJCE&callback=initMap">
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE1Boy-A_UgLPNoOY7kOuj-6Yju4cEJCE&">
   </script>
 <% end %>
 
-<section class="user-info event-page content">
+<article class="user-info event-page content" data-id="<%= @event.id %>">
   <header class="event-header">
     &nbsp;
   </header>
 
-  <article class="event-content container">
-    <section class="columns event-head">
-      <div class="column is-half is-9 is-offset-1">
-        <div class="columns">
-          <div class="user-info column is-one-quarter">
-            <%= image_tag("irina.jpg", class: "avatar image is-128x128") %>
-            <%= link_to @event.user.name, user_path(@event.user.id), class: "user-name" %>
-          </div>
+  <section class="event-content container">
+    <div class="columns event-head">
+      <div class="user-info column is-2">
+        <%= image_tag("irina.jpg", class: "avatar image is-128x128") %>
+        <%= link_to @event.user.name, user_path(@event.user.id), class: "user-name" %>
+      </div>
 
-          <div class="event-info column">
-            <h1 class="event-title"><%= @event.title %></h1>
-            <div class="columns">
-              <div class="column is-3">
-                <span class="event-icon"><i class="fa fa-calendar" aria-hidden="true"></i> Date</span>
-                <p><%= @event.scheduled_at.strftime("%d %b. %Y") %></p>
-              </div>
-              <div class="column is-3">
-                <span class="event-icon"><i class="fa fa-clock-o" aria-hidden="true"></i> Time</span>
-                <p><%= @event.scheduled_at.strftime("%I:%M %P") %></p>
-              </div>
-              <div class="column is-5">
-                <span class="event-icon"><i class="fa fa-map-marker" aria-hidden="true"></i> Address</span>
-                <p><%= @event.address %></p>
-              </div>
-            </div>
+      <div class="event-info column is-10">
+        <h1 class="event-title"><%= @event.title %></h1>
+        <div class="columns">
+          <div class="column is-2">
+            <span class="event-icon"><i class="fa fa-calendar" aria-hidden="true"></i> Date</span>
+            <p><%= @event.scheduled_at.strftime("%d %b. %Y") %></p>
           </div>
+          <div class="column is-2">
+            <span class="event-icon"><i class="fa fa-clock-o" aria-hidden="true"></i> Time</span>
+            <p><%= @event.scheduled_at.strftime("%I:%M %P") %></p>
+          </div>
+          <div class="column is-4">
+            <span class="event-icon"><i class="fa fa-map-marker" aria-hidden="true"></i> Address</span>
+            <p><%= @event.address %></p>
+          </div>
+          <% if @event.end_address %>
+            <div class="column is-4">
+              <span class="event-icon"><i class="fa fa-map-marker" aria-hidden="true"></i> Destination</span>
+              <p><%= @event.end_address %></p>
+          </div>
+          <% end %>
         </div>
       </div>
     </section>
@@ -53,7 +55,7 @@
 
         <% if !@event.users.include?(current_user) %>
           <%= form_for(@event, url: :accept_event, method: :post) do |form| %>
-            <button type="submit">Accept</button>
+            <button type="submit" class="button">Accept</button>
           <% end %>
         <% else %>
           <p> <%= current_user.name %>, you are now registered for <%= @event.user.name %>'s event. </p>
@@ -71,7 +73,7 @@
       </div>
 
       <div>
-        <div id="map" style="width: 300px; height: 300px"></div>
+        <div id="single-map" style="width: 300px; height: 300px; position: relative;"></div>
       </div>
     </section>
-  </article>
+</article>

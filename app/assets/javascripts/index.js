@@ -1,9 +1,9 @@
 $(function() {
   // Add a token to the create Event form for Rails security
-  var token = $('meta[name=csrf-token]').attr("content");
-  $(".modal").find("#create-event").prepend(
-    $('<input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value=' + token + '>')
-  );
+  // var token = $('meta[name=csrf-token]').attr("content");
+  // $(".modal").find("#create-event").prepend(
+  //   $('<input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value=' + token + '>')
+  // );
 
   // Dropdown menu
   $(".dropdown-item").click(function(e) {
@@ -21,6 +21,18 @@ $(function() {
     }
   });
 
+  $(".index-map").find(".search-events").click(function() {
+    $(window).scrollTo("#map", 1000);
+    var $topLink = $("<span>").addClass("scroll-top").text("Top");
+    $(".nav").prepend($topLink);
+  });
+
+  $(document).on("click", ".scroll-top", function() {
+    $(window).scrollTo("body", 1000);
+    // $(".scroll-top").remove();
+  });
+
+
   // Google Map resize
   // $(window).resize(function() {
   //   var height = $(window).height() - $('nav').height() - $('.index-map .container').height();
@@ -36,23 +48,5 @@ $(function() {
 
   // var mapHeight = $(window).height();
   // $("#map").css('height', height);
-  var start = [0, 0];
-  $(".search-events").click(function(e) {
-    e.stopPropagation();
-    $(".index-map").slideDown();
-  });
 
-  function goToSlideIndex (index, instant) {
-    if (index < 0) index = 0;
-    if (index > this.items.size() - 1) index = this.items.size() - 1;
-    this.currentIndex = index;
-    var targetScroll = index * this.element.height();
-    if (instant) {
-      this.scrollTarget.stop().scrollTop(targetScroll);
-    } else {
-      this.scrollTarget.stop().animate({
-        scrollTop: targetScroll
-      });
-    }
-  }
 });

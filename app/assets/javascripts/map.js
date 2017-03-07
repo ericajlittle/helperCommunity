@@ -7,16 +7,31 @@ $(function() {
       initMap(data);
     }
   });
+
+
+  // Map for single event page
+  if($(".event-page").length) {
+    var eventId = $(".event-page").data("id");
+
+    $.ajax({
+      url: "/events/" + eventId,
+      dataType: "json"
+    }).done(function(data) {
+      if (window.google) {
+        initSingleMap(data);
+      }
+    });
+  }
 });
 
 
 function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
 
 function initMap(data) {
@@ -223,13 +238,24 @@ function renderDirections(map, result) {
   directionsRenderer.setDirections(result);
 }
 
-function addEventToMap(map, event) {
-  var markerA = addMarker(map, event, event.lat, event.lng, true);
-  var markerB = addMarker(map, event, event.end_lat, event.end_lng, false);
+function formatCoordinate(coordinate) {
+  return parseFloat(coordinate.toFixed(6));
+}
 
-  requestDirections(map,
-    {lat: event["lat"], lng: event["lng"]},
-    {lat: event["end_lat"], lng: event["end_lng"]});
+function addEventToMap(map, event) {
+  if(event.lat && event.lng) {
+    var markerA = addMarker(map, event, formatCoordinate(event.lat), formatCoordinate(event.lng), true);
+  }
+
+  if(event.end_lat && event.end_lng) {
+    var markerB = addMarker(map, event, formatCoordinate(event.end_lat), formatCoordinate(event.end_lng), false);
+  }
+
+  if(event.lat && event.lng && event.end_lat && event.end_lng) {
+      requestDirections(map,
+    {lat: formatCoordinate(event.lat), lng: formatCoordinate(event.lng)},
+    {lat: formatCoordinate(event.end_lat), lng: formatCoordinate(event.end_lng)});
+  }
 }
 
 function addMarker(map, event, lat, lng, isOrigin) {
@@ -259,16 +285,21 @@ function addMarker(map, event, lat, lng, isOrigin) {
 
 }
 
-function initSingleMap() {
-  var vancouver = {lat: 49.2821004, lng: -123.1082745};
+function initSingleMap(event) {
+  window.App || (window.App = {});
 
-  var map = new google.maps.Map(document.getElementById("single-map"), {
-    zoom: 7,
+  var mapContainer = document.getElementById("single-map");
+  if (!mapContainer) return;
+
+  var vancouver = {lat: 49.2821004, lng: -123.1082745};
+  var map = new google.maps.Map(mapContainer, {
+    zoom: 12,
     center: vancouver
   });
 
-  var marker = new google.maps.Marker({
-    position: vancouver,
-    map: map
-  });
+  window.App.map = map;
+
+  if (event) {
+    addEventToMap(map, event);
+  }
 }
