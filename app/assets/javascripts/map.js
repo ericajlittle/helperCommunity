@@ -8,7 +8,6 @@ $(function() {
     }
   });
 
-
   // Map for single event page
   if($(".event-page").length) {
     var eventId = $(".event-page").data("id");
@@ -24,7 +23,6 @@ $(function() {
   }
 });
 
-
 function getRandomColor() {
   var letters = '0123456789ABCDEF';
   var color = '#';
@@ -33,8 +31,6 @@ function getRandomColor() {
   }
   return color;
 }
-
-
 
 function initMap(data) {
   window.App || (window.App = {});

@@ -11,7 +11,7 @@
 
   <section class="event-content container">
     <div class="columns">
-      <div class="user-info column is-one-quarter">
+      <div class="user-info column is-2">
         <%= image_tag @event.user.photo.url(:thumb), class: 'avatar image is-128x128' %>
         <span class="user-name"> <%=link_to @event.user.name, user_path(@event.user_id) %></span>
       </div>
