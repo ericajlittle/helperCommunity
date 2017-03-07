@@ -7,7 +7,7 @@
     <section class="columns">
       <div class="user-info column is-one-quarter">
         <%= image_tag @event.user.photo.url(:thumb), class: 'avatar image is-128x128' %>
-        <span class="user-name"><%= @event.user.name %></span>
+        <span class="user-name"> <%=link_to @event.user.name, user_path(@event.user_id) %></span>
       </div>
 
       <div class="column">
