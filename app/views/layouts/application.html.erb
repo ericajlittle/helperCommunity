@@ -6,6 +6,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://use.fontawesome.com/6a1ef489aa.js"></script>
+
     <%= yield(:header) %>
   </head>
 
@@ -13,8 +16,9 @@
 
     <%= render 'layouts/top_nav' %>
 
-  <main class="container content">
+  <main>
     <%= yield %>
+    <%= react_component("NewEvent") %>
   </main>
 
   </body>

@@ -5,9 +5,6 @@ import AllEvents from '../components/AllEvents';
 import ActionCable from 'actioncable';
 
 export default class App extends React.Component {
-  // static propTypes = {
-  //   name: PropTypes.string.isRequired, // this is passed from the Rails view
-  // };
   constructor(props) {
     super(props);
     // this.state = defaultState;
@@ -38,18 +35,17 @@ export default class App extends React.Component {
     });
   }
   createEvent(eventData) {
-    // ajax call to save event to db
     $.ajax({
       url: '/events',
       type: 'POST',
       data: {event: eventData},
       success: (response) => {
-
         // alert("Event Successfully created");
         console.log(response);
       },
       error: (response)=>{
-        alert("Error creating an event");
+        // alert("Error creating an event");
+        console.log(response);
       }
     });
   }
@@ -67,13 +63,7 @@ export default class App extends React.Component {
     return (
       <div>
         <p>
-          <select className="mySelect">
-              <option value="right">Right</option>
-              <option value="left">Left</option>
-              <option value="up">Up</option>
-              <option value="down">Down</option>
-          </select>
-          <button id="button" className="myButton" onClick={this.toggleAllEvents}>Run Effect</button>
+          <button id="button" className="myButton" onClick={this.toggleAllEvents}>Run Events Log</button>
         </p>
         <div className="allEventsContainer" style={runEffectStyle}>
           {allEvents}

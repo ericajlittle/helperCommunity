@@ -1,0 +1,41 @@
+.dropdown-item {
+  position: relative;
+
+  .fa {
+    vertical-align: middle;
+  }
+
+  .fa-user-circle-o {
+    margin-right: 6px;
+  }
+
+  &.user {
+    cursor: pointer;
+  }
+}
+
+.dropdown-menu {
+  background-color: #fff;
+  border: solid 2px #eee;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  display: none;
+  padding: 15px;
+  position: absolute;
+  text-align: left;
+  top: 47px;
+  right: 0;
+}
+
+.login .dropdown-menu {
+  height: 220px;
+  width: 330px;
+}
+
+.user .dropdown-menu {
+  width: 175px;
+}
+
+.create-event {
+  margin: 8px 15px 0;
+}
