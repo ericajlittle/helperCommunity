@@ -17,3 +17,5 @@
 //= require cable
 //= require map
 //= require bulma
+
+//= require submit
