@@ -37,14 +37,17 @@
   <% end %>
 </section>
 
-<h3>
+<div class="user-rating">
   <% if @user.reviews.average(:rating) == nil %>
-    No Karma Points Yet......
+    <span class="rating-none">&nbsp;</span>
+    <span class="rating rating-0"></span>
   <%else%>
-    Karma Points Average
-    <%= @user.reviews.average(:rating)%>
+    <span class="rating-none">&nbsp;</span>
+    <span class="rating rating-<%= @user.reviews.average(:rating).round %>">
+        <%= @user.reviews.average(:rating).round %>
+    </span>
   <%end%>
-</h3>
+</div>
 
 <%= render 'form' %>
 
