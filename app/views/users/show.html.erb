@@ -30,7 +30,7 @@
       <dl class="hover">
         <dt><b>Event Title: </b></dt>
         <dd><%= link_to event.title, event_path(event.id) %></dd>
-        <dt><b>Description:</b></dt>
+        <dt><b>About this event:</b></dt>
         <dd class="event"><%= event.description %></dd>
         <dt><b>Members Attending Event:</b></dt>
         <dd class="event">
@@ -56,7 +56,20 @@
     <%end%>
   </h3>
 
+
   <%= render 'form' %>
+
+<div class="user-rating">
+  <% if @user.reviews.average(:rating) == nil %>
+    <span class="rating-none">&nbsp;</span>
+    <span class="rating rating-0"></span>
+  <%else%>
+    <span class="rating-none">&nbsp;</span>
+    <span class="rating rating-<%= @user.reviews.average(:rating).round %>">
+        <%= @user.reviews.average(:rating).round %>
+    </span>
+  <%end%>
+</div>
 
   <%= render 'reviews' %>
 </article>
