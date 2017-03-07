@@ -43,6 +43,15 @@
   <% end %>
 </section>
 
+<h3>
+  <% if @user.reviews.average(:rating) == nil %>
+    No Karma Points Yet......
+  <%else%>
+    Karma Points Average
+    <%= @user.reviews.average(:rating)%>
+  <%end%>
+</h3>
+
 <%= render 'form' %>
 
 <%= render 'reviews' %>

@@ -34,6 +34,8 @@ function getRandomColor() {
   return color;
 }
 
+
+
 function initMap(data) {
   window.App || (window.App = {});
 
@@ -210,6 +212,7 @@ function initMap(data) {
 
   if (data) {
     for(i = 0; i < data.length; i++) {
+
       addEventToMap(map, data[i]);
     }
   }
@@ -243,18 +246,14 @@ function formatCoordinate(coordinate) {
 }
 
 function addEventToMap(map, event) {
-  if(event.lat && event.lng) {
-    var markerA = addMarker(map, event, formatCoordinate(event.lat), formatCoordinate(event.lng), true);
-  }
+  var markerA = addMarker(map, event, event.lat, event.lng, true);
+  // if there is no marker b aka end point, just make one marker!
+  if (event.end_lat != null) {
+  var markerB = addMarker(map, event, event.end_lat, event.end_lng, false);
 
-  if(event.end_lat && event.end_lng) {
-    var markerB = addMarker(map, event, formatCoordinate(event.end_lat), formatCoordinate(event.end_lng), false);
-  }
-
-  if(event.lat && event.lng && event.end_lat && event.end_lng) {
-      requestDirections(map,
-    {lat: formatCoordinate(event.lat), lng: formatCoordinate(event.lng)},
-    {lat: formatCoordinate(event.end_lat), lng: formatCoordinate(event.end_lng)});
+  requestDirections(map,
+    {lat: event["lat"], lng: event["lng"]},
+    {lat: event["end_lat"], lng: event["end_lng"]});
   }
 }
 

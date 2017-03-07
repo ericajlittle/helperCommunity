@@ -10,10 +10,10 @@
   </header>
 
   <section class="event-content container">
-    <div class="columns event-head">
-      <div class="user-info column is-2">
-        <%= image_tag("irina.jpg", class: "avatar image is-128x128") %>
-        <%= link_to @event.user.name, user_path(@event.user.id), class: "user-name" %>
+    <div class="columns">
+      <div class="user-info column is-one-quarter">
+        <%= image_tag @event.user.photo.url(:thumb), class: 'avatar image is-128x128' %>
+        <span class="user-name"> <%=link_to @event.user.name, user_path(@event.user_id) %></span>
       </div>
 
       <div class="event-info column is-10">
@@ -39,43 +39,44 @@
           <% end %>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="event-content container">
-      <div class="columns">
-        <div class="column is-8">
-          <h4>About this event</h4>
-          <p><%= @event.description %></p>
+  <section class="event-content container">
+    <div class="columns">
+      <div class="column is-8">
+        <h4>About this event</h4>
+        <p><%= @event.description %></p>
 
-          <p>
-            <strong>Event Created At:</strong>
-            <%= @event.created_at.strftime("%d %b. %Y") %>
-          </p>
+        <p>
+          <strong>Event Created At:</strong>
+          <%= @event.created_at.strftime("%d %b. %Y") %>
+        </p>
 
-          <% if current_user && @event.user != current_user %>
+        <% if current_user && @event.user != current_user %>
 
-          <% if !@event.users.include?(current_user) %>
-            <%= form_for(@event, url: :accept_event, method: :post) do |form| %>
-              <button type="submit" class="button is-large">Accept</button>
-            <% end %>
-          <% else %>
-            <p> <%= current_user.name %>, you are now registered for <%= @event.user.name %>'s event. </p>
-            <p> <%= @event.user.name %>'s contact info: <%= @event.user.email %> </p>
+        <% if !@event.users.include?(current_user) %>
+          <%= form_for(@event, url: :accept_event, method: :post) do |form| %>
+            <button type="submit" class="button is-large">Accept</button>
           <% end %>
+        <% else %>
+          <p> <%= current_user.name %>, you are now registered for <%= @event.user.name %>'s event. </p>
+          <p> <%= @event.user.name %>'s contact info: <%= @event.user.email %> </p>
+        <% end %>
 
+        <%end%>
+
+        <p>
+          Attendees:
+          <% @event.users.each do |x| %>
+            <%= link_to x.name, user_path(x.id) %>
           <%end%>
-
-          <p>
-            Attendees:
-            <% @event.users.each do |x| %>
-              <%= link_to x.name, user_path(x.id) %>
-            <%end%>
-          </p>
-        </div>
-
-        <div class="column is-4">
-          <div id="single-map" style="width: 300px; height: 300px; position: relative;"></div>
-        </div>
+        </p>
       </div>
-    </section>
+
+      <div class="column is-4">
+        <div id="single-map" style="width: 300px; height: 300px; position: relative;"></div>
+      </div>
+    </div>
+  </section>
 </article>
