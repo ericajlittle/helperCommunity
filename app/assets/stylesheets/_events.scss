@@ -24,7 +24,8 @@
   }
 
   .user-name {
-    color: $brandcolor;
+    color: #999;
+    font-size: $size-6;
     text-decoration: underline;
 
     &:hover {

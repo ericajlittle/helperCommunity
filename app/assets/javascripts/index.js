@@ -29,7 +29,6 @@ $(function() {
 
   $(document).on("click", ".scroll-top", function() {
     $(window).scrollTo("body", 1000);
-    // $(".scroll-top").remove();
   });
 
 
