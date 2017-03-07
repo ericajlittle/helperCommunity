@@ -1,3 +1,18 @@
+.nav {
+  background-color: rgba(255, 255, 255, 0.8);
+
+  .nav-item img {
+    height: 60px;
+    max-height: 100%;
+  }
+
+  .logo-text {
+    color: $brandcolor;
+    font-size:  $size-3;
+    padding-right: 5px;
+  }
+}
+
 .dropdown-item {
   position: relative;
 
@@ -39,13 +54,4 @@
 
 .create-event {
   margin: 20px 15px 0;
-}
-
-.nav {
-  background-color: #fff;
-}
-
-.nav-item img {
-  height: 60px;
-  max-height: 100%;
 }

@@ -1,3 +1,9 @@
+<% content_for(:header) do %>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE1Boy-A_UgLPNoOY7kOuj-6Yju4cEJCE&callback=initMap">
+  </script>
+<% end %>
+
 <section class="user-info event-page content">
   <header class="event-header">
     &nbsp;
@@ -5,25 +11,29 @@
 
   <article class="event-content container">
     <section class="columns event-head">
-      <div class="user-info column is-one-quarter">
-        <%= image_tag("irina.jpg", class: "avatar image is-128x128") %>
-        <%= link_to @event.user.name, user_path(@event.user.id), class: "user-name" %>
-      </div>
-
-      <div class="event-info column">
-        <h1 class="event-title"><%= @event.title %></h1>
+      <div class="column is-half is-9 is-offset-1">
         <div class="columns">
-          <div class="column is-2">
-            <span class="event-icon"><i class="fa fa-calendar" aria-hidden="true"></i> Date</span>
-            <p><%= @event.scheduled_at.strftime("%d %b. %Y") %></p>
+          <div class="user-info column is-one-quarter">
+            <%= image_tag("irina.jpg", class: "avatar image is-128x128") %>
+            <%= link_to @event.user.name, user_path(@event.user.id), class: "user-name" %>
           </div>
-          <div class="column is-2">
-            <span class="event-icon"><i class="fa fa-clock-o" aria-hidden="true"></i> Time</span>
-            <p><%= @event.scheduled_at.strftime("%I:%M %P") %></p>
-          </div>
-          <div class="column">
-            <span class="event-icon"><i class="fa fa-map-marker" aria-hidden="true"></i> Address</span>
-            <p><%= @event.address %></p>
+
+          <div class="event-info column">
+            <h1 class="event-title"><%= @event.title %></h1>
+            <div class="columns">
+              <div class="column is-3">
+                <span class="event-icon"><i class="fa fa-calendar" aria-hidden="true"></i> Date</span>
+                <p><%= @event.scheduled_at.strftime("%d %b. %Y") %></p>
+              </div>
+              <div class="column is-3">
+                <span class="event-icon"><i class="fa fa-clock-o" aria-hidden="true"></i> Time</span>
+                <p><%= @event.scheduled_at.strftime("%I:%M %P") %></p>
+              </div>
+              <div class="column is-5">
+                <span class="event-icon"><i class="fa fa-map-marker" aria-hidden="true"></i> Address</span>
+                <p><%= @event.address %></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -37,11 +47,6 @@
         <p>
           <strong>Event Created At:</strong>
           <%= @event.created_at.strftime("%d %b. %Y") %>
-        </p>
-
-        <p>
-          <strong>Karma Member Since:</strong>
-          <%= @event.user.created_at.strftime("%d %b. %Y") %>
         </p>
 
         <% if current_user && @event.user != current_user %>
@@ -66,7 +71,7 @@
       </div>
 
       <div>
-
+        <div id="map" style="width: 300px; height: 300px"></div>
       </div>
     </section>
   </article>

@@ -256,4 +256,19 @@ function addMarker(map, event, lat, lng, isOrigin) {
   });
 
   return marker;
+
+}
+
+function initSingleMap() {
+  var vancouver = {lat: 49.2821004, lng: -123.1082745};
+
+  var map = new google.maps.Map(document.getElementById("single-map"), {
+    zoom: 7,
+    center: vancouver
+  });
+
+  var marker = new google.maps.Marker({
+    position: vancouver,
+    map: map
+  });
 }
