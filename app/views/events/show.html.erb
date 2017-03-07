@@ -1,68 +1,81 @@
-<section class="user-info event-page content">
+<% content_for(:header) do %>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE1Boy-A_UgLPNoOY7kOuj-6Yju4cEJCE&">
+  </script>
+<% end %>
+
+<article class="user-info event-page content" data-id="<%= @event.id %>">
   <header class="event-header">
     &nbsp;
   </header>
 
-  <article class="event-content container">
-    <section class="columns">
-      <div class="user-info column is-one-quarter">
-        <%= image_tag @event.user.photo.url(:thumb), class: 'avatar image is-128x128' %>
-        <span class="user-name"><%= @event.user.name %></span>
+  <section class="event-content container">
+    <div class="columns event-head">
+      <div class="user-info column is-2">
+        <%= image_tag("irina.jpg", class: "avatar image is-128x128") %>
+        <%= link_to @event.user.name, user_path(@event.user.id), class: "user-name" %>
       </div>
 
-      <div class="column">
-        <h1><%= @event.title %></h1>
+      <div class="event-info column is-10">
+        <h1 class="event-title"><%= @event.title %></h1>
         <div class="columns">
-          <div class="column is-one-third">
-            <i class="fa fa-calendar" aria-hidden="true"></i> Date
+          <div class="column is-2">
+            <span class="event-icon"><i class="fa fa-calendar" aria-hidden="true"></i> Date</span>
             <p><%= @event.scheduled_at.strftime("%d %b. %Y") %></p>
           </div>
-          <div class="column">
-            <i class="fa fa-clock-o" aria-hidden="true"></i> Time
+          <div class="column is-2">
+            <span class="event-icon"><i class="fa fa-clock-o" aria-hidden="true"></i> Time</span>
             <p><%= @event.scheduled_at.strftime("%I:%M %P") %></p>
           </div>
-          <div class="column">
-            <i class="fa fa-map-marker" aria-hidden="true"></i> Address
+          <div class="column is-4">
+            <span class="event-icon"><i class="fa fa-map-marker" aria-hidden="true"></i> Address</span>
             <p><%= @event.address %></p>
           </div>
+          <% if @event.end_address %>
+            <div class="column is-4">
+              <span class="event-icon"><i class="fa fa-map-marker" aria-hidden="true"></i> Destination</span>
+              <p><%= @event.end_address %></p>
+          </div>
+          <% end %>
         </div>
       </div>
     </section>
 
-    <section class="columns">
-      <div class="column">
-        <h3>About this event</h3>
-        <p><%= @event.description %></p>
+    <section class="event-content container">
+      <div class="columns">
+        <div class="column is-8">
+          <h4>About this event</h4>
+          <p><%= @event.description %></p>
 
-        <p>
-          <strong>Event Created At:</strong>
-          <%= @event.created_at.strftime("%d %b. %Y") %>
-        </p>
+          <p>
+            <strong>Event Created At:</strong>
+            <%= @event.created_at.strftime("%d %b. %Y") %>
+          </p>
 
-        <p>
-          <strong>Karma Member Since:</strong>
-          <%= @event.user.created_at.strftime("%d %b. %Y") %>
-        </p>
+          <% if current_user && @event.user != current_user %>
 
-        <% if current_user && @event.user != current_user %>
-
-        <% if !@event.users.include?(current_user) %>
-          <%= form_for(@event, url: :accept_event, method: :post) do |form| %>
-            <button type="submit">Accept</button>
+          <% if !@event.users.include?(current_user) %>
+            <%= form_for(@event, url: :accept_event, method: :post) do |form| %>
+              <button type="submit" class="button is-large">Accept</button>
+            <% end %>
+          <% else %>
+            <p> <%= current_user.name %>, you are now registered for <%= @event.user.name %>'s event. </p>
+            <p> <%= @event.user.name %>'s contact info: <%= @event.user.email %> </p>
           <% end %>
-        <% else %>
-          <p> <%= current_user.name %>, you are now registered for <%= @event.user.name %>'s event. </p>
-          <p> <%= @event.user.name %>'s contact info: <%= @event.user.email %> </p>
-        <% end %>
 
-        <%end%>
-
-        <p>
-          Attendees:
-          <% @event.users.each do |x| %>
-            <%= link_to x.name, user_path(x.id) %>
           <%end%>
-        </p>
+
+          <p>
+            Attendees:
+            <% @event.users.each do |x| %>
+              <%= link_to x.name, user_path(x.id) %>
+            <%end%>
+          </p>
+        </div>
+
+        <div class="column is-4">
+          <div id="single-map" style="width: 300px; height: 300px; position: relative;"></div>
+        </div>
       </div>
     </section>
-  </article>
+</article>

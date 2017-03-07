@@ -1,26 +1,4 @@
 $(function() {
-  // Add a token to the create Event form for Rails security
-  var token = $('meta[name=csrf-token]').attr("content");
-  $(".modal").find("#create-event").prepend(
-    $('<input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value=' + token + '>')
-  );
-
-  // Dropdown menu
-  $(".dropdown-item").click(function(e) {
-    e.stopPropagation();
-    $(this).children(".dropdown-menu").slideToggle();
-  });
-
-  $(".dropdown-menu").click(function(e) {
-    e.stopPropagation();
-  });
-
-  $(document).on("click", function() {
-    if($(".dropdown-menu").attr("style") == "display: block;") {
-      $(".dropdown-menu").slideToggle();
-    }
-  });
-
   $.ajax({
     url: "/events",
     dataType: "json"
@@ -30,27 +8,30 @@ $(function() {
     }
   });
 
-  $(window).resize(function() {
-    var height = $(window).height() - $('nav').height() - $('.index-map .container').height();
-    $("#map").css('height', height);
-    google.maps.event.trigger(map,'resize')
-    console.log(height);
-  });
 
-  // $(window).trigger('resize');
-  var height = $(window).height() - $('nav').height() - $('.index-map .container').height() - 10 + "px";
-  $("#map").css('height', height);
-  console.log(height);
+  // Map for single event page
+  if($(".event-page").length) {
+    var eventId = $(".event-page").data("id");
+
+    $.ajax({
+      url: "/events/" + eventId,
+      dataType: "json"
+    }).done(function(data) {
+      if (window.google) {
+        initSingleMap(data);
+      }
+    });
+  }
 });
 
 
 function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
 
 
@@ -260,6 +241,10 @@ function renderDirections(map, result) {
   directionsRenderer.setDirections(result);
 }
 
+function formatCoordinate(coordinate) {
+  return parseFloat(coordinate.toFixed(6));
+}
+
 function addEventToMap(map, event) {
   var markerA = addMarker(map, event, event.lat, event.lng, true);
   // if there is no marker b aka end point, just make one marker!
@@ -269,6 +254,19 @@ function addEventToMap(map, event) {
   requestDirections(map,
     {lat: event["lat"], lng: event["lng"]},
     {lat: event["end_lat"], lng: event["end_lng"]});
+  }
+  if(event.lat && event.lng) {
+    var markerA = addMarker(map, event, formatCoordinate(event.lat), formatCoordinate(event.lng), true);
+  }
+
+  if(event.end_lat && event.end_lng) {
+    var markerB = addMarker(map, event, formatCoordinate(event.end_lat), formatCoordinate(event.end_lng), false);
+  }
+
+  if(event.lat && event.lng && event.end_lat && event.end_lng) {
+      requestDirections(map,
+    {lat: formatCoordinate(event.lat), lng: formatCoordinate(event.lng)},
+    {lat: formatCoordinate(event.end_lat), lng: formatCoordinate(event.end_lng)});
   }
 }
 
@@ -296,4 +294,24 @@ function addMarker(map, event, lat, lng, isOrigin) {
   });
 
   return marker;
+
+}
+
+function initSingleMap(event) {
+  window.App || (window.App = {});
+
+  var mapContainer = document.getElementById("single-map");
+  if (!mapContainer) return;
+
+  var vancouver = {lat: 49.2821004, lng: -123.1082745};
+  var map = new google.maps.Map(mapContainer, {
+    zoom: 12,
+    center: vancouver
+  });
+
+  window.App.map = map;
+
+  if (event) {
+    addEventToMap(map, event);
+  }
 }

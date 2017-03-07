@@ -3,14 +3,19 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE1Boy-A_UgLPNoOY7kOuj-6Yju4cEJCE&callback=initMap">
   </script>
 <% end %>
+
 <%= react_component("App") %>
 
 <section class="index-map">
-  <div class="container mission">
-      Community Engagement Resource, for members of the community supporting eachother through goodwill.
-      <br />Beautiful text about our app
+  <div class="transp-bg">&nbsp;</div>
+  <div class="mission">
+    <div class="mission-text is-half is-offset-one-quarter">
+      Community Engagement Resource, for members of the community supporting eachother through goodwill. Beautiful text about our app
+      <br /><br /><br />
+      <span class="button search-events is-large">Search for Events</span>
+    </div>
   </div>
 
   <div id="map"></div>
-
 </section>
+

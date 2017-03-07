@@ -63,7 +63,7 @@ export default class App extends React.Component {
     return (
       <div>
         <p>
-          <button id="button" className="myButton" onClick={this.toggleAllEvents}>Run Events Log</button>
+          <button id="button" className="myButton" onClick={this.toggleAllEvents}>Events Log</button>
         </p>
         <div className="allEventsContainer" style={runEffectStyle}>
           {allEvents}
