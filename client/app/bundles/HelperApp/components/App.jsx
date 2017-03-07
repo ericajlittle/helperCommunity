@@ -15,10 +15,12 @@ export default class App extends React.Component {
     // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
     this.state = {
       name: this.props.name,
-      events: []
+      events: [],
+      showAllEvents: false
     };
 
     this.createEvent = this.createEvent.bind(this);
+    // this.toggleAllEvents = this.toggleAllEvents.bind(this);
 
     this.cable = ActionCable.createConsumer();
         console.log(this.cable);
@@ -51,13 +53,31 @@ export default class App extends React.Component {
       }
     });
   }
+  toggleAllEvents = () => {
+    this.setState({showAllEvents: !this.state.showAllEvents});
+  }
   render() {
+    var runEffectStyle = this.state.showAllEvents ?
+      {display: "inherit", right: "0%"} :
+      {display: "inherit", right: "-100%"};
+
     const allEvents = this.state.events.map(({ title, description, address, end_address, user }, i) => {
         return (<AllEvents title={ title } description={ description } address={ address } end_address={ end_address } user={user} key={i} />);
     })
     return (
       <div>
-        {allEvents}
+        <p>
+          <select className="mySelect">
+              <option value="right">Right</option>
+              <option value="left">Left</option>
+              <option value="up">Up</option>
+              <option value="down">Down</option>
+          </select>
+          <button id="button" className="myButton" onClick={this.toggleAllEvents}>Run Effect</button>
+        </p>
+        <div className="allEventsContainer" style={runEffectStyle}>
+          {allEvents}
+        </div>
         <NewEvent createEvent={this.createEvent} />
       </div>
     );
