@@ -7,6 +7,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"></script>
     <script src="https://use.fontawesome.com/6a1ef489aa.js"></script>
 
     <%= yield(:header) %>
@@ -20,6 +21,8 @@
     <%= yield %>
     <%= react_component("NewEvent") %>
   </main>
-
+  <footer class="footer">
+    <%= render 'layouts/footer' %>
+  </footer>
   </body>
 </html>

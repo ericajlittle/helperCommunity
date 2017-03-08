@@ -1,51 +1,76 @@
-<section class="profile">
-  <h1>Member Profile</h1>
-  </p>
+<article class="container content profile">
+  <section class="">
+    <h1>Member Profile</h1>
+    <div class="columns">
+      <div class="column is-3">
+        <%= image_tag @user.photo.url(:thumb) %>
+      </div>
+      <div class="column is-9">
+        <p>
+          <strong>Name:</strong>
+          <%= @user.name %>
 
-  <p>
-    <%= image_tag @user.photo.url(:thumb) %>
-  </p>
+        <p>
+          <strong>Description:</strong>
+          <%= @user.description %>
+        </p>
 
-  <p>
-    <strong>Name:</strong>
-    <%= @user.name %>
+        <p>
+          <strong>Karma Member Since:</strong>
+          <%= @user.created_at.strftime("%d %b. %Y") %>
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @user.description %>
-  </p>
-</section>
+  <section class="events">
+    <br>
+    <h2>Events <%= @user.name %> has created</h2>
+    <% @user.events.reverse.each do |event| %>
+      <dl class="hover">
+        <dt><b>Event Title: </b></dt>
+        <dd><%= link_to event.title, event_path(event.id) %></dd>
+        <dt><b>About this event:</b></dt>
+        <dd class="event"><%= event.description %></dd>
+        <dt><b>Members Attending Event:</b></dt>
+        <dd class="event">
+          <% if event.users.length == 0 %>
+            there are no members attending this event
+          <% else %>
+            <% event.users.each do |x| %>
+              <%= link_to x.name, user_path(x.id) %>
+            <% end %>
+          <% end %>
+        </dd>
+        <br>
+      </dl>
+    <% end %>
+  </section>
 
-<section class="events">
-  <br>
-  <h2>Request List</h2>
-  <% @user.events.reverse.each do |event| %>
-    <dl class="hover">
-      <dt><b>Request: </b><%= event.title %></dt>
-      <dd></dd>
-      <dt><b>Description:</b></dt>
-      <dd class="event"><%= event.description %></dd>
-      <dd></dd>
-      <dt><b>Members Attending Event:</b></dt>
-      <dd class="event">
-        <% event.users.each do |x| %>
-          <%= link_to x.name, user_path(x.id) %>
-        <%end%>
-      </dd>
-      <br>
-    </dl>
-  <% end %>
-</section>
+  <h3>
+    <% if @user.reviews.average(:rating) == nil %>
+      No Karma Points Yet
+    <% else %>
+      Karma Points Average
+      <%= @user.reviews.average(:rating)%>
+    <%end%>
+  </h3>
 
-<h3>
+
+  <%= render 'form' %>
+
+<div class="user-rating">
   <% if @user.reviews.average(:rating) == nil %>
-    No Karma Points Yet......
+    <span class="rating-none">&nbsp;</span>
+    <span class="rating rating-0"></span>
   <%else%>
-    Karma Points Average
-    <%= @user.reviews.average(:rating)%>
+    <span class="rating-none">&nbsp;</span>
+    <span class="rating rating-<%= @user.reviews.average(:rating).round %>">
+        <%= @user.reviews.average(:rating).round %>
+    </span>
   <%end%>
-</h3>
+</div>
 
-<%= render 'form' %>
+  <%= render 'reviews' %>
+</article>
 
-<%= render 'reviews' %>

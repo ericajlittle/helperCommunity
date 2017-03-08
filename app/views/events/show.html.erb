@@ -1,37 +1,51 @@
-<section class="user-info event-page content">
+<% content_for(:header) do %>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE1Boy-A_UgLPNoOY7kOuj-6Yju4cEJCE&">
+  </script>
+<% end %>
+
+<article class="user-info event-page content" data-id="<%= @event.id %>">
   <header class="event-header">
     &nbsp;
   </header>
 
-  <article class="event-content container">
-    <section class="columns">
-      <div class="user-info column is-one-quarter">
+  <section class="event-content container">
+    <div class="columns">
+      <div class="user-info column is-2">
         <%= image_tag @event.user.photo.url(:thumb), class: 'avatar image is-128x128' %>
         <span class="user-name"> <%=link_to @event.user.name, user_path(@event.user_id) %></span>
       </div>
 
-      <div class="column">
-        <h1><%= @event.title %></h1>
+      <div class="event-info column is-10">
+        <h1 class="event-title"><%= @event.title %></h1>
         <div class="columns">
-          <div class="column is-one-third">
-            <i class="fa fa-calendar" aria-hidden="true"></i> Date
+          <div class="column is-2">
+            <span class="event-icon"><i class="fa fa-calendar" aria-hidden="true"></i> Date</span>
             <p><%= @event.scheduled_at.strftime("%d %b. %Y") %></p>
           </div>
-          <div class="column">
-            <i class="fa fa-clock-o" aria-hidden="true"></i> Time
+          <div class="column is-2">
+            <span class="event-icon"><i class="fa fa-clock-o" aria-hidden="true"></i> Time</span>
             <p><%= @event.scheduled_at.strftime("%I:%M %P") %></p>
           </div>
-          <div class="column">
-            <i class="fa fa-map-marker" aria-hidden="true"></i> Address
+          <div class="column is-4">
+            <span class="event-icon"><i class="fa fa-map-marker" aria-hidden="true"></i> Address</span>
             <p><%= @event.address %></p>
           </div>
+          <% if @event.end_address %>
+            <div class="column is-4">
+              <span class="event-icon"><i class="fa fa-map-marker" aria-hidden="true"></i> Destination</span>
+              <p><%= @event.end_address %></p>
+          </div>
+          <% end %>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="columns">
-      <div class="column">
-        <h3>About this event</h3>
+  <section class="event-content container">
+    <div class="columns">
+      <div class="column is-8">
+        <h4>About this event</h4>
         <p><%= @event.description %></p>
 
         <p>
@@ -39,16 +53,11 @@
           <%= @event.created_at.strftime("%d %b. %Y") %>
         </p>
 
-        <p>
-          <strong>Karma Member Since:</strong>
-          <%= @event.user.created_at.strftime("%d %b. %Y") %>
-        </p>
-
         <% if current_user && @event.user != current_user %>
 
         <% if !@event.users.include?(current_user) %>
           <%= form_for(@event, url: :accept_event, method: :post) do |form| %>
-            <button type="submit">Accept</button>
+            <button type="submit" class="button is-large">Accept</button>
           <% end %>
         <% else %>
           <p> <%= current_user.name %>, you are now registered for <%= @event.user.name %>'s event. </p>
@@ -64,5 +73,10 @@
           <%end%>
         </p>
       </div>
-    </section>
-  </article>
+
+      <div class="column is-4">
+        <div id="single-map" style="width: 300px; height: 300px; position: relative;"></div>
+      </div>
+    </div>
+  </section>
+</article>

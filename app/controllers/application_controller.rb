@@ -25,5 +25,10 @@ class ApplicationController < ActionController::Base
   def set_variables
     @rooms = Room.all
   end
+  # before_filter do
+  #   if request.path != '/' && request.format == :html && !params[:format]
+  #     redirect_to format: :html
+  #   end
+  # end
 
 end
