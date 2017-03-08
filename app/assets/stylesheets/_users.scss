@@ -47,11 +47,19 @@ nav.user-nav {
       border-radius: 48px;
     }
   }
+
+  .user-events-date {
+    font-size: $size-6;
+  }
 }
 
 .user-section {
   padding: 20px 0;
   border-bottom: solid 1px #ccc;
+
+  &:last-child {
+    border-bottom: 0;
+  }
 }
 
 .review-form-container {
@@ -130,4 +138,8 @@ nav.user-nav {
       width: 125px;
     }
   }
+}
+
+.content.user-profile p:not(:last-child) {
+  margin-bottom: 5px;
 }
