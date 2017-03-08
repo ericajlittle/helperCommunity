@@ -7,13 +7,14 @@
 }
 
 #map {
-  position: relative;
+  // position: relative;
   width: 100%;
-  height: 100%;
+  height: 700px;
 }
 
 .mission {
   background: url(image-path('index.jpg')) center top no-repeat;
+  box-shadow: inset 0 0 0 1000px rgba(250,250,250,.5);
   background-size: cover;
   font-size: 1.5rem;
   height: 100%;
@@ -33,22 +34,23 @@
   }
 }
 
-.index-map {
-  bottom: 100px;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-}
+// .index-map {
+//   bottom: 0;
+//   height: 100%;
+//   left: 0;
+//   position: absolute;
+//   right: 0;
+//   top: 0;
+//   width: 100%;
+// }
 
-.transp-bg {
-  @extend .index-map;
-  background-color: #fff;
-  opacity: 0.5;
-  z-index: 5;
-}
+
+// .transp-bg {
+//   @extend .index-map;
+//   background-color: #fff;
+//   opacity: 0.5;
+//   z-index: 5;
+// }
 
 .button {
   background-color: $brandcolor;
@@ -56,8 +58,15 @@
 }
 
 .scroll-top {
+  color: $brandcolor;
+  cursor: pointer;
+  font-size: 17px;
   position: absolute;
-  top: 10px;
-  left: 50%;
+  top: 22px;
+  left: 47%;
   z-index: 100;
+}
+
+.columns:last-child {
+  margin-bottom: 0rem;
 }

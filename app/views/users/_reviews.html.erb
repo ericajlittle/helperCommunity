@@ -1,23 +1,44 @@
-<section class='reviews'>
-  <h4>User Review</h4>
+<section class="reviews">
+  <h5><%= @user.name %>'s Reviews</h5>
   <% @user.reviews.reverse.each do |review| %>
-    <dl class="hover">
-      <br>
-      <dt>Reviewer</dt>
-      <dd><%= link_to review.reviewer.name, "/users/#{review.reviewer_id}" %></dd>
-      <dt>Feedback</dt>
-      <dd class="review"><%= review.content %></dd>
-      <dt>Overview</dt>
-      <dd><%= review.rating %>/5</dd>
-      <%if current_user.id == review.reviewer_id%>
-        <dd>
-          <%= link_to 'Remove This Review', [review.user, review],
-                       method: :delete,
-                       data: { confirm: 'Are you sure?' } %>
-        </dd>
-      <%end%>
-      <br>
-      <br>
-    </dl>
+
+    <div class="columns">
+      <div class="column is-1">
+        <div class="reviewer-avatar">
+          <%= image_tag review.reviewer.photo.url(:thumb), class: "image is-48x48" %>
+          <%= link_to review.reviewer.name, "/users/#{review.reviewer_id}" %>
+        </div>
+
+      </div>
+      <div class="column is-11">
+        <p><%= review.content %></p>
+
+        <% if @user.reviews.average(:rating) == nil %>
+          <div class="user-rating">
+            <span class="rating-none">&nbsp;</span>
+            <span class="rating rating-0"></span>
+          </div>
+        <%else%>
+          <div class="user-rating">
+            <span class="rating-none">&nbsp;</span>
+            <span class="rating rating-<%= @user.reviews.average(:rating).round %>">
+                <%= @user.reviews.average(:rating).round %>
+            </span>
+          </div>
+        <%end%>
+
+        <div>
+          <%if current_user.id == review.reviewer_id%>
+            <div>
+              <%= link_to 'Remove This Review', [review.user, review],
+                           method: :delete,
+                           data: { confirm: 'Are you sure?' },
+                           class: "remove-btn" %>
+            </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+
   <% end %>
 </section>

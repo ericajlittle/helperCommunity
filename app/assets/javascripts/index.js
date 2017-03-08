@@ -1,9 +1,4 @@
 $(function() {
-  // Add a token to the create Event form for Rails security
-  // var token = $('meta[name=csrf-token]').attr("content");
-  // $(".modal").find("#create-event").prepend(
-  //   $('<input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value=' + token + '>')
-  // );
 
   // Dropdown menu
   $(".dropdown-item").click(function(e) {
@@ -23,7 +18,7 @@ $(function() {
 
   $(".index-map").find(".search-events").click(function() {
     $(window).scrollTo("#map", 1000);
-    var $topLink = $("<span>").addClass("scroll-top").text("Top");
+    var $topLink = $("<span>").addClass("scroll-top").html("Scroll to top &uarr;");
     $(".nav").prepend($topLink);
   });
 
@@ -32,20 +27,34 @@ $(function() {
   });
 
 
-  // Google Map resize
-  // $(window).resize(function() {
-  //   var height = $(window).height() - $('nav').height() - $('.index-map .container').height();
-  //   $("#map").css('height', height);
-  //   google.maps.event.trigger(map,'resize')
-  //   console.log(height);
-  // });
+  // Validation and disable review submit button
+  // var $input = $('#review_content'),
+  //     $select = $('#review_rating'),
+  //     $register = $("input[value='Create Review']");
+  // $register.attr('disabled', true);
 
-  // $(window).trigger('resize');
-  // var height = $(window).height() - $('nav').height();
-  // $(".index-map").css('height', height);
-  // // console.log(height);
+  // function validateInputs() {
+  //   return ($input.val().length > 0) && ($select.find(':selected').val().length > 0)
+  // }
 
-  // var mapHeight = $(window).height();
-  // $("#map").css('height', height);
+  // function validateSubmit() {
+  //   if (validateInputs()) {
+  //     $register.attr('disabled', false);
+  //   } else {
+  //     $register.attr('disabled', true);
+  //   }
+  // }
+
+  // $input.on('blur input', function() {
+  //   validateSubmit();
+  // })
+
+  // $select.on('change', function() {
+  //   validateSubmit();
+  // })
+
+  // if($(".user-profile").length) {
+  //   $("nav").addClass("user-nav");
+  // }
 
 });

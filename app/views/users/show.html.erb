@@ -1,76 +1,63 @@
-<article class="container content profile">
-  <section class="">
-    <h1>Member Profile</h1>
+<article class="content user-profile">
+  <section class="user-section container">
     <div class="columns">
       <div class="column is-3">
         <%= image_tag @user.photo.url(:thumb) %>
       </div>
-      <div class="column is-9">
-        <p>
-          <strong>Name:</strong>
-          <%= @user.name %>
-
-        <p>
-          <strong>Description:</strong>
-          <%= @user.description %>
-        </p>
-
-        <p>
-          <strong>Karma Member Since:</strong>
-          <%= @user.created_at.strftime("%d %b. %Y") %>
-        </p>
+      <div class="column is-8">
+        <h2 class="user-name"><%= @user.name %></h2>
+        <p class="karma-member">Karma Member Since: <%= @user.created_at.strftime("%d %b. %Y") %></p>
+        <p class="user-desc"><%= @user.description %></p>
+        <strong>Karma Points Average</strong>
+        <% if @user.reviews.average(:rating) == nil %>
+          <div class="user-rating">
+            <span class="rating-none">&nbsp;</span>
+            <span class="rating rating-0"></span>
+          </div>
+        <% else %>
+            <div class="user-rating">
+              <span class="rating-none">&nbsp;</span>
+              <span class="rating rating-<%= @user.reviews.average(:rating).round %>">
+                  <%= @user.reviews.average(:rating).round %>
+              </span>
+          </div>
+        <%end%>
       </div>
     </div>
   </section>
 
-  <section class="events">
-    <br>
-    <h2>Events <%= @user.name %> has created</h2>
+  <section class="user-section container">
+    <h4>Events <%= @user.name %> has created</h4>
     <% @user.events.reverse.each do |event| %>
-      <dl class="hover">
-        <dt><b>Event Title: </b></dt>
-        <dd><%= link_to event.title, event_path(event.id) %></dd>
-        <dt><b>About this event:</b></dt>
-        <dd class="event"><%= event.description %></dd>
-        <dt><b>Members Attending Event:</b></dt>
-        <dd class="event">
+      <div class="user-events">
+        <h5>
+          <%= link_to event.title, event_path(event.id) %>
+          <span class="user-events-date"><%= event.created_at.strftime("%d %b. %Y") %></span>
+        </h5>
+        <p class="user-events-desc"><%= event.description %></p>
+        <div class="user-events-attend">
+          <p>Members Attending Event:</p>
           <% if event.users.length == 0 %>
-            there are no members attending this event
+            No Members Yet
           <% else %>
             <% event.users.each do |x| %>
-              <%= link_to x.name, user_path(x.id) %>
+              <div class="each-user">
+                <%= image_tag x.photo.url(:thumb), class: "image is-48x48" %>
+                <%= link_to x.name, user_path(x.id) %>
+              </div>
             <% end %>
           <% end %>
-        </dd>
-        <br>
-      </dl>
+        </div>
+      </div>
     <% end %>
   </section>
 
-  <h3>
-    <% if @user.reviews.average(:rating) == nil %>
-      No Karma Points Yet
-    <% else %>
-      Karma Points Average
-      <%= @user.reviews.average(:rating)%>
-    <%end%>
-  </h3>
+  <section class="user-section container">
 
+    <%= render 'form' %>
 
-  <%= render 'form' %>
+    <%= render 'reviews' %>
+  </section>
 
-<div class="user-rating">
-  <% if @user.reviews.average(:rating) == nil %>
-    <span class="rating-none">&nbsp;</span>
-    <span class="rating rating-0"></span>
-  <%else%>
-    <span class="rating-none">&nbsp;</span>
-    <span class="rating rating-<%= @user.reviews.average(:rating).round %>">
-        <%= @user.reviews.average(:rating).round %>
-    </span>
-  <%end%>
-</div>
-
-  <%= render 'reviews' %>
 </article>
 
