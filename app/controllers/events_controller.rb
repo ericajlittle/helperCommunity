@@ -1,11 +1,13 @@
 class EventsController < ApplicationController
 
   def index
-    @events = Event.all
+    @events = Event.includes(:user)
 
     respond_to do |format|
       format.html
-      format.json { render :json => @events }
+      format.json {
+        render :json => @events, :include => :user
+      }
     end
 
   end
