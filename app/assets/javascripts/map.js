@@ -8,7 +8,6 @@ $(function() {
     }
   });
 
-
   // Map for single event page
   if($(".event-page").length) {
     var eventId = $(".event-page").data("id");
@@ -24,7 +23,6 @@ $(function() {
   }
 });
 
-
 function getRandomColor() {
   var letters = '0123456789ABCDEF';
   var color = '#';
@@ -33,8 +31,6 @@ function getRandomColor() {
   }
   return color;
 }
-
-
 
 function initMap(data) {
   window.App || (window.App = {});
@@ -255,19 +251,19 @@ function addEventToMap(map, event) {
     {lat: event["lat"], lng: event["lng"]},
     {lat: event["end_lat"], lng: event["end_lng"]});
   }
-  if(event.lat && event.lng) {
-    var markerA = addMarker(map, event, formatCoordinate(event.lat), formatCoordinate(event.lng), true);
-  }
+  // if(event.lat && event.lng) {
+  //   var markerA = addMarker(map, event, formatCoordinate(event.lat), formatCoordinate(event.lng), true);
+  // }
 
-  if(event.end_lat && event.end_lng) {
-    var markerB = addMarker(map, event, formatCoordinate(event.end_lat), formatCoordinate(event.end_lng), false);
-  }
+  // if(event.end_lat && event.end_lng) {
+  //   var markerB = addMarker(map, event, formatCoordinate(event.end_lat), formatCoordinate(event.end_lng), false);
+  // }
 
-  if(event.lat && event.lng && event.end_lat && event.end_lng) {
-      requestDirections(map,
-    {lat: formatCoordinate(event.lat), lng: formatCoordinate(event.lng)},
-    {lat: formatCoordinate(event.end_lat), lng: formatCoordinate(event.end_lng)});
-  }
+  // if(event.lat && event.lng && event.end_lat && event.end_lng) {
+  //     requestDirections(map,
+  //   {lat: formatCoordinate(event.lat), lng: formatCoordinate(event.lng)},
+  //   {lat: formatCoordinate(event.end_lat), lng: formatCoordinate(event.end_lng)});
+  // }
 }
 
 function addMarker(map, event, lat, lng, isOrigin) {
