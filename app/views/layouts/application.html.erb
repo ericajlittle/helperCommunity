@@ -17,13 +17,13 @@
 
     <%= render 'layouts/top_nav' %>
 
-  <main>
-    <%= yield %>
-    <%= react_component("NewEvent") %>
-    <footer>
+    <main>
+      <%= yield %>
+      <%= react_component("NewEvent") %>
+    </main>
+    <footer class='footer'>
       <%= render 'layouts/footer' %>
     </footer>
-  </main>
 
   </body>
 </html>
