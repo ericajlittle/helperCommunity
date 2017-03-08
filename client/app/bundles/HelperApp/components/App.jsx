@@ -62,12 +62,6 @@ export default class App extends React.Component {
     })
     return (
       <div>
-        <p>
-          <button id="button" className="myButton" onClick={this.toggleAllEvents}>Events Log</button>
-        </p>
-        <div className="allEventsContainer" style={runEffectStyle}>
-          {allEvents}
-        </div>
         <NewEvent createEvent={this.createEvent} />
       </div>
     );
