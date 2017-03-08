@@ -18,3 +18,5 @@
 //= require map
 //= require bulma
 //= require index
+//= require submit
+

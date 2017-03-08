@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-
 export default class NewEvent extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +15,6 @@ export default class NewEvent extends React.Component {
     var desc = this.refs.description.value;
     var scheduled_at = this.refs.scheduled_at.value;
     var address = this.refs.address.value;
-    var city = this.refs.city.value;
     var end_address = this.refs.end_address.value;
 
     const eventData = {
@@ -24,7 +22,6 @@ export default class NewEvent extends React.Component {
       description: desc,
       scheduled_at: scheduled_at,
       address: address,
-      city: city,
       end_address: end_address
     }
     this.props.createEvent(eventData)

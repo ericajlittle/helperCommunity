@@ -245,11 +245,11 @@ function addEventToMap(map, event) {
   var markerA = addMarker(map, event, event.lat, event.lng, true);
   // if there is no marker b aka end point, just make one marker!
   if (event.end_lat != null) {
-  var markerB = addMarker(map, event, event.end_lat, event.end_lng, false);
+    var markerB = addMarker(map, event, event.end_lat, event.end_lng, false);
 
-  requestDirections(map,
-    {lat: event["lat"], lng: event["lng"]},
-    {lat: event["end_lat"], lng: event["end_lng"]});
+    requestDirections(map,
+      {lat: event["lat"], lng: event["lng"]},
+      {lat: event["end_lat"], lng: event["end_lng"]});
   }
 }
 
