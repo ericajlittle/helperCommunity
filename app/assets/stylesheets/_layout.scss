@@ -57,8 +57,15 @@
 }
 
 .scroll-top {
+  color: $brandcolor;
+  cursor: pointer;
+  font-size: 17px;
   position: absolute;
-  top: 10px;
-  left: 50%;
+  top: 22px;
+  left: 47%;
   z-index: 100;
+}
+
+.columns:last-child {
+  margin-bottom: 0rem;
 }

@@ -1,9 +1,4 @@
 $(function() {
-  // Add a token to the create Event form for Rails security
-  // var token = $('meta[name=csrf-token]').attr("content");
-  // $(".modal").find("#create-event").prepend(
-  //   $('<input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value=' + token + '>')
-  // );
 
   // Dropdown menu
   $(".dropdown-item").click(function(e) {
@@ -23,7 +18,7 @@ $(function() {
 
   $(".index-map").find(".search-events").click(function() {
     $(window).scrollTo("#map", 1000);
-    var $topLink = $("<span>").addClass("scroll-top").text("Top");
+    var $topLink = $("<span>").addClass("scroll-top").html("Scroll to top &uarr;");
     $(".nav").prepend($topLink);
   });
 
@@ -31,13 +26,8 @@ $(function() {
     $(window).scrollTo("body", 1000);
   });
 
-
-  // Google Map resize
-  // $(window).resize(function() {
-  //   var height = $(window).height() - $('nav').height() - $('.index-map .container').height();
-  //   $("#map").css('height', height);
-  //   google.maps.event.trigger(map,'resize')
-  //   console.log(height);
+  // $(document).on("click", "#create-event", function() {
+  //   $(this).closest(".modal-card-body").find("input[type=text], textarea").val("");
   // });
 
   // $(window).trigger('resize');
@@ -74,5 +64,8 @@ $(function() {
     validateSubmit();
   })
 
+  if($(".user-profile").length) {
+    $("nav").addClass("user-nav");
+  }
 
 });

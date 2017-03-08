@@ -1,6 +1,73 @@
+nav.user-nav {
+  border-bottom: solid 1px $brandcolor;
+}
 
-.profile {
-  padding: $nav-height 0;
+.user-profile {
+  margin: $nav-height 0 0;
+
+  .user-name {
+    margin: 0;
+  }
+
+  .karma-member {
+    font-size: $size-6;
+    font-weight: bold;
+  }
+
+  .user-desc {
+
+  }
+}
+
+.user-events {
+  margin-bottom: 15px;
+
+  h5 {
+    margin: 0 0 5px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  };
+
+  a {
+    color: $brandcolor;
+  }
+
+  .user-events-desc,
+  .user-events-attend {
+    padding-left: 10px;
+  }
+
+  .each-user {
+    display: inline-block;
+    margin-right: 10px;
+
+    img {
+      border-radius: 48px;
+    }
+  }
+}
+
+.user-section {
+  padding: 20px 0;
+  border-bottom: solid 1px #ccc;
+}
+
+.review-form-container {
+  width: 45%;
+  margin-bottom: 30px;
+}
+
+.reviewer-avatar {
+  img {
+    border-radius: 48px;
+  }
+
+  a {
+    color: $brandcolor;
+    font-size: $size-6;
+  }
 }
 
 .user-rating,
@@ -11,6 +78,10 @@
   vertical-align: middle;
 }
 
+.remove-btn {
+  color: #999;
+  font-size: $size-6;
+}
 
 .user-rating {
   background-color: #ccc;
@@ -30,7 +101,7 @@
   }
 
   .rating {
-    background: #337ab7;
+    background: $brandcolor;
     height: 24px;
     text-indent: -9999px;
     z-index: 3;
