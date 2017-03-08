@@ -12,17 +12,17 @@ export default class NewEvent extends React.Component {
     var desc = this.refs.description.value;
     var scheduled_at = this.refs.scheduled_at.value;
     var address = this.refs.address.value;
-    var city = this.refs.city.value;
+    // var city = this.refs.city.value;
     var end_address = this.refs.end_address.value;
     const eventData = {
       title: title,
       description: desc,
       scheduled_at: scheduled_at,
       address: address,
-      city: city,
+      // city: city,
       end_address: end_address
-    }
-    this.props.createEvent(eventData)
+    };
+    this.props.createEvent(eventData);
   }
   render() {
     return (

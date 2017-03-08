@@ -24,6 +24,7 @@ class EventsController < ApplicationController
     @event.user_id = current_user.id if current_user
 
     if @event.save
+      puts "I GOT CREATED!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
       #render json:@event
       redirect_to @event
     else
@@ -56,11 +57,11 @@ class EventsController < ApplicationController
       params.require(:event).permit(
         :title,
         :description,
-        :photo,
+        # :photo,
         :scheduled_at,
         :address,
         :end_address,
-        :city
+        # :city
       )
     end
 end
