@@ -8,6 +8,7 @@ export default class NewEvent extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
+    console.log('handleclick is called!!!');
     var title = this.refs.title.value;
     var desc = this.refs.description.value;
     var scheduled_at = this.refs.scheduled_at.value;

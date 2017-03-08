@@ -24,14 +24,15 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.create!(event_params)
+    puts "I AM READY TO BE CREATED!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    @event = Event.create(event_params)
 
     @event.user_id = current_user.id if current_user
 
     if @event.save
       puts "I GOT CREATED!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-      #render json:@event
-      redirect_to @event
+      render json:@event
+      # redirect_to @event
     else
       render json:{ result: 'failed to save', errors: @event.errors.full_messages }, status: 400
     end
@@ -59,14 +60,6 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(
-        :title,
-        :description,
-        # :photo,
-        :scheduled_at,
-        :address,
-        :end_address,
-        # :city
-      )
+      params.require(:event).permit(:title, :description, :scheduled_at, :address, :end_address)
     end
 end

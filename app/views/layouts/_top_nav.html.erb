@@ -13,7 +13,7 @@
       <% end %>
 
       <% if current_user %>
-        <%= link_to 'Chat', '/rooms' %>
+        <%= link_to 'Chat', '/rooms', class: "nav-item chat-button" %>
         <a class="button create-event modal-button" data-target="#modal-crev">Create Event</a>
         <span class="nav-item dropdown-item user">
           <i class="fa fa-user-circle-o" aria-hidden="true"></i> <%= current_user.name %>

@@ -21,15 +21,18 @@ export default class App extends React.Component {
   }
 
   createEvent(eventData) {
+    console.log('App.Createevent EXECUTED!');
     $.ajax({
       url: '/events',
       type: 'POST',
       data: {event: eventData},
       success: (response) => {
+        console.log('the response is ', response);
         const roomInfo = {
           title: response.title,
           event_id: response.id
         };
+        console.log('here is the roomInfo', roomInfo);
         this.registerRoom(roomInfo);
       },
       error: (response)=>{

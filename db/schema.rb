@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 20170303013659) do
     t.datetime "updated_at",         null: false
     t.datetime "scheduled_at"
     t.string   "address"
+    t.string   "city"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.string   "city"
     t.string   "end_address"
     t.float    "end_lat"
     t.float    "end_lng"
