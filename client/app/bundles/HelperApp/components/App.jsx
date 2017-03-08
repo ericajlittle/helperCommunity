@@ -7,9 +7,6 @@ import ActionCable from 'actioncable';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = defaultState;
-    // How to set initial state in ES6 class syntax
-    // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
     this.state = {
       name: this.props.name,
       events: [],
@@ -26,6 +23,7 @@ export default class App extends React.Component {
   componentDidMount() {
     this.getEvents();
   }
+
   getEvents() {
     $.ajax({
       url: "/events",
@@ -34,6 +32,7 @@ export default class App extends React.Component {
       this.setState({ events: data })
     });
   }
+
   createEvent(eventData) {
     $.ajax({
       url: '/events',
@@ -41,7 +40,7 @@ export default class App extends React.Component {
       data: {event: eventData},
       success: (response) => {
         console.log("test");
-        $("#create-event-form")[0].reset();
+        // $("#create-event-form")[0].reset();
         console.log(response);
         console.log("test 2");
       },
@@ -68,9 +67,7 @@ export default class App extends React.Component {
     );
   }
   setupSubscription(){
-
     this.event = this.cable.subscriptions.create("EventChannel", "UserChannel", {
-
       connected: () => {
         console.log("connected??");
       },
@@ -83,6 +80,5 @@ export default class App extends React.Component {
       updateCommentList: this.updateCommentList
 
     });
-    console.log('this.event', this.event);
   }
 }
