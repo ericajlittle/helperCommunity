@@ -54,7 +54,7 @@ class EventsController < ApplicationController
       client.account.sms.messages.create(
         from: TWILIO_CONFIG['from'],
         to: current_user.phone_number,
-        body: "#{current_user.name} has accepted your event."
+        body: "#{current_user.name} has accepted your event. Here is #{current_user.name}'s email for you to connect, #{current_user.email}"
       )
     redirect_to :event
   end
