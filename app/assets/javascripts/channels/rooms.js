@@ -4,7 +4,6 @@ $(() => {
   window.rooms = [];
   // connect with each room
   roomIds.forEach((ele) => {
-    console.log('FOREACH GOT EXECUTED!!!');
     window.rooms[ele] = App.cable.subscriptions.create ({
       channel: 'RoomsChannel',
       room_id: ele
@@ -17,7 +16,7 @@ $(() => {
       },
       received: function(data) {
         // receive data, judge if the data should be appende into this room
-        if(data.room_id === Number(location.pathname.split('').pop())) {
+        if(data.room_id === Number(location.pathname.match(/\d+/))) {
           $('#messages').append(`<div>${data.content}<div>`);
         }
       }
@@ -27,7 +26,8 @@ $(() => {
 
 // remember to use turbolinks:load to make jquery effective
 // add event listener to be ready to send out message
-$(document).on('turbolinks:load', () => {
+$(() => {
+  console.log('PAGE IS LOADED');
   $('#message-input').focus().on('keydown', function(event) {
     const $this = $(this);
     if (event.keyCode === 13) {

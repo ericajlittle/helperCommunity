@@ -46,7 +46,7 @@ class EventsController < ApplicationController
     # puts current_user.phone_number
     # kind of like event.users.push(current_user) & save to db
     # render text: "Thank you! You will receive an SMS shortly."
-
+    HelperList.create!(event_id: @event.id, user_id: current_user.id)
     # Instantiate a Twilio client
       client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
 
