@@ -5,6 +5,27 @@
 </div>
 
 <section class="chat">
-  <div id="messages"></div>
+  <div id="messages">
+    <% unless @messages.nil? %>
+      <% @messages.each do |m| %>
+        <% if current_user.id == m.user_id %>
+          <div class='my-message-content'>
+            <div class='wrapper'>
+              <%= m.content %>
+            </div>
+          </div>
+        <% else %>
+          <div class='other-people-messages'>
+            <div>
+              <%= User.find(m.user_id).name %>
+            </div>
+            <div>
+              <%= m.content %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
   <input id='message-input' type='text' data-room-id=<%= @room.id %> data-user-id=<%= current_user.id %> placeholder="You are good to chat!">
 </section>

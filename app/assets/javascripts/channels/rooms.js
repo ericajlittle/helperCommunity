@@ -46,7 +46,6 @@ $(() => {
 // remember to use turbolinks:load to make jquery effective
 // add event listener to be ready to send out message
 $(() => {
-  console.log('PAGE IS LOADED');
   $('#message-input').focus().on('keydown', function(event) {
     const $this = $(this);
     if (event.keyCode === 13) {
