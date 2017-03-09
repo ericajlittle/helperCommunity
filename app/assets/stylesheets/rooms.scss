@@ -1,6 +1,58 @@
 // Place all the styles related to the Rooms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+section.chat,
+section.room {
+  min-height: 520px;
+}
+
 .room-top {
   margin-top: $nav-height;
 }
+
+section.chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-transform: capitalize;
+}
+
+.room-top.title {
+  text-align: center;
+}
+
+#messages {
+  font-size: 1.2em;
+}
+
+#messages>div {
+  border: 2px solid gray;
+  border-radius: 7px;
+  margin-bottom: 10px;
+}
+
+.other-people-messages {
+  margin-left: 10px;
+  width: 40%;
+  background: azure;
+  padding: 10px 20px;
+}
+
+.other-people-messages div:first-child {
+  font-size: 0.7em;
+}
+
+.my-message-content {
+  text-align: right;
+  padding: 10px 20px;
+  margin-left: 60%;
+  margin-right: 10px;
+  background: aliceblue;
+}
+
+#message-input {
+  font-size: 1.2em;
+  height: 60px;
+  width: 100%;
+}
+

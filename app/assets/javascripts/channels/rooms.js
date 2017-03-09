@@ -17,7 +17,26 @@ $(() => {
       received: function(data) {
         // receive data, judge if the data should be appende into this room
         if(data.room_id === Number(location.pathname.match(/\d+/))) {
-          $('#messages').append(`<div>${data.content}<div>`);
+          if ($('#message-input').data('userId') === data.user_id) {
+            $('#messages').append(`
+              <div class='my-message-content'>
+                <div class='wrapper'>
+                  ${data.content}
+                </div>
+              <div>
+            `);
+          } else {
+            $('#messages').append(`
+              <div class='other-people-messages'>
+                <div>
+                  ${data.user_name}
+                </div>
+                <div>
+                  ${data.content}
+                <div>
+              </div>
+            `);
+          }
         }
       }
     });

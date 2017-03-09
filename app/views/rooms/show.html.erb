@@ -1,11 +1,10 @@
-<h1> <%= @room.title %> </h1>
-
-<div id="messages">
-
+<div class="content">
+  <h1 class="room-top title">
+    <%= @room.title %>
+  </h1>
 </div>
 
-
-
-  <label> Say something: </label> <br>
-  <input id='message-input' type='text' data-room-id=<%= @room.id %>
-    data-user-id=<%= current_user.id %> >
+<section class="chat">
+  <div id="messages"></div>
+  <input id='message-input' type='text' data-room-id=<%= @room.id %> data-user-id=<%= current_user.id %> placeholder="You are good to chat!">
+</section>
