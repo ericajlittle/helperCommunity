@@ -41,7 +41,7 @@ $(function() {
   // Validation and disable review submit button
   var $input = $('#review_content'),
       $select = $('#review_rating'),
-      $register = $(':submit');
+      $register = $("input[value='Create Review']");
   $register.attr('disabled', true);
 
   function validateInputs() {
