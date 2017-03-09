@@ -6,6 +6,10 @@
   font-size: $size-5;
 }
 
+main {
+  min-height: 520px;
+}
+
 #map {
   // position: relative;
   width: 100%;
