@@ -67,7 +67,7 @@ export default class NewEvent extends React.Component {
                 </div>
 
                 <div className="form-group">
-                  <label className="label required">Destination:</label>
+                  <label className="label">Destination (Optional):</label>
                   <p className="control">
                     <input ref='end_address' className='input' placeholder='200 W. Hastings' />
                   </p>
