@@ -5,7 +5,7 @@
 }
 
 .event-content {
-  padding: 15px 0;
+  padding: 20px 0;
 
   .event-title {
     color: $brandcolor;
@@ -27,6 +27,11 @@
     color: #999;
     font-size: $size-6;
     text-decoration: underline;
+    width: 128px;
+
+    a {
+      color: #999;
+    }
 
     &:hover {
       text-decoration: none;
@@ -50,10 +55,24 @@
   margin: 20px 0;
 }
 
-// #map {
-//   height: 400px;
-//   width: 100%;
-//  }
+.event-date {
+  font-size: $size-6;
+}
+
+#single-map {
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+
+.event-attendees a {
+  color: $brandcolor;
+}
+
+/*#map {
+  height: 400px;
+  width: 100%;
+}*/
 
 #myDiv {
    color:Green;

@@ -30,12 +30,15 @@
     <h4>Events <%= @user.name %> has created</h4>
     <% @user.events.reverse.each do |event| %>
       <div class="user-events">
-        <h5><%= link_to event.title, event_path(event.id) %></h5>
+        <h5>
+          <%= link_to event.title, event_path(event.id) %>
+          <span class="user-events-date"><%= event.created_at.strftime("%d %b. %Y") %></span>
+        </h5>
         <p class="user-events-desc"><%= event.description %></p>
         <div class="user-events-attend">
           <p>Members Attending Event:</p>
           <% if event.users.length == 0 %>
-            there are no members attending this event
+            No Members Yet
           <% else %>
             <% event.users.each do |x| %>
               <div class="each-user">

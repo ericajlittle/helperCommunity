@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-
 export default class NewEvent extends React.Component {
   constructor(props) {
     super(props);
@@ -10,13 +9,12 @@ export default class NewEvent extends React.Component {
   }
 
   handleClick(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
     var title = this.refs.title.value;
     var desc = this.refs.description.value;
     var scheduled_at = this.refs.scheduled_at.value;
     var address = this.refs.address.value;
-    var city = this.refs.city.value;
     var end_address = this.refs.end_address.value;
 
     const eventData = {
@@ -24,7 +22,6 @@ export default class NewEvent extends React.Component {
       description: desc,
       scheduled_at: scheduled_at,
       address: address,
-      city: city,
       end_address: end_address
     }
     this.props.createEvent(eventData)
@@ -39,7 +36,6 @@ export default class NewEvent extends React.Component {
               <p className="modal-card-title">Create a New Event</p>
             </header>
 
-            <form id="create-event-form">
               <section className="modal-card-body">
 
                 <div className="form-group">
@@ -76,20 +72,13 @@ export default class NewEvent extends React.Component {
                     <input ref='end_address' className='input' placeholder='200 W. Hastings' />
                   </p>
                 </div>
-
-                <div className="form-group">
-                  <label className="label required">City:</label>
-                  <p className="control">
-                    <input ref='city' className='input' placeholder='Vancouver' />
-                  </p>
-                </div>
               </section>
 
               <footer className="modal-card-foot">
                 <button onClick={this.handleClick} className="button is-success" id="create-event">Create Event</button>
                 <a className="button">Cancel</a>
               </footer>
-            </form>
+
           </div>
       </div>
     );
