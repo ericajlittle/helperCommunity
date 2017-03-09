@@ -40,7 +40,7 @@ function initMap(data) {
 
   var vancouver = {lat: 49.2821004, lng: -123.1082745};
   var map = new google.maps.Map(mapContainer, {
-    zoom: 12,
+    zoom: 14,
     styles: [
       {
         "elementType": "geometry",
@@ -230,7 +230,8 @@ function renderDirections(map, result) {
     polylineOptions: {
       strokeColor: getRandomColor()
     },
-    suppressMarkers:true
+    suppressMarkers:true,
+    preserveViewport: true
   });
 
   directionsRenderer.setMap(map);
