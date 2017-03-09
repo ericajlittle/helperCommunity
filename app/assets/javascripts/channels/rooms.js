@@ -23,7 +23,7 @@ $(() => {
                 <div class='wrapper'>
                   ${data.content}
                 </div>
-              <div>
+              </div>
             `);
           } else {
             $('#messages').append(`
@@ -33,7 +33,7 @@ $(() => {
                 </div>
                 <div>
                   ${data.content}
-                <div>
+                </div>
               </div>
             `);
           }
