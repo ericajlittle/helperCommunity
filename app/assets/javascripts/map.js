@@ -472,4 +472,3 @@ function initSingleMap(event) {
     addEventToMap(map, event);
   }
 }
-
