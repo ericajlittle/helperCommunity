@@ -64,3 +64,22 @@
 .create-event {
   margin: 20px 15px 0;
 }
+
+@media screen and (max-width: 768px) {
+  .nav-menu {
+    display: flex;
+    position: static;
+    box-shadow: none;
+    border-top: 0px;
+  }
+
+  .nav-item {
+    justify-content: center;
+    border-top: 0px;
+  }
+}
+
+
+
+
+

@@ -61,7 +61,7 @@ u4 = User.create!({
   name:  'Michael',
   email: 'michael@gmail.com',
   password_digest: '123456',
-  photo: open_asset('peter.jpg'),
+  photo: open_asset('21.05,16_BMC_Me.jpg'),
   description: 'Hey everyone. I live in east van, I love coding and my two bunnies Mocha and Honey.',
   DoB: 30.years.ago,
   phone_number: '+16046796423'
@@ -88,8 +88,7 @@ Event.destroy_all
 
 e1 = u1.events.create!({
   title: 'International Women\'s Day 2017',
-  address: '3360 Victoria Drive',
-  city: 'Vancouver',
+  address: '3360 Victoria Drive, Vancouver',
   lat: 49.255502,
   lng: -123.065428,
   description: '2017 International Women\'s Day celebrate the social, political,
@@ -102,8 +101,7 @@ e1 = u1.events.create!({
 
 e2 = u2.events.create!({
   title: 'New Brighton Park Communtiy Clean-up',
-  address: '3201 New Brighton Rd',
-  city: 'Vancouver',
+  address: '3201 New Brighton Rd, Vancouver',
   lat: 49.289233,
   lng: -123.036204,
   description: 'I am organizing a community clean up for my favourite park in my area that is need of some TLC.
@@ -115,8 +113,7 @@ e2 = u2.events.create!({
 
 e3 = u3.events.create!({
   title: 'Brewery Biking Tour',
-  address: '1111 Mainland Street',
-  city: 'Vancouver',
+  address: '1111 Mainland Street, Vancouver',
   lat: 49.277042,
   lng: -123.120915,
   description: 'Hey everyone I would love to meet new people and have some fun drinking Vancouver
@@ -134,8 +131,7 @@ e3 = u3.events.create!({
 
 e4 = u4.events.create!({
   title: 'Weekly Sports Meetup',
-  address: '1300 Pacific Blvd',
-  city: 'Vancouver',
+  address: '1300 Pacific Blvd, Vancouver',
   lat: 49.272231,
   lng: -123.124992,
   description: 'I would love to start a weekly sports meetup at David Lam park. Here is what I have in mind,
@@ -150,8 +146,7 @@ e4 = u4.events.create!({
 
 e5 = u5.events.create!({
   title: 'Slow and Steady Walking Club',
-  address: '1669 Johnston St',
-  city: 'Vancouver',
+  address: '1669 Johnston St, Vancouver',
   lat: 49.273169,
   lng: -123.135195,
   description: 'Are you wanting to get inshape in a low impact and social way? Do you love wandering through our

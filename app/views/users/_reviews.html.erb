@@ -12,8 +12,7 @@
       </div>
       <div class="column is-11">
         <p><%= review.content %></p>
-
-        <% if @user.reviews.average(:rating) == nil %>
+        <% if review.rating == nil %>
           <div class="user-rating">
             <span class="rating-none">&nbsp;</span>
             <span class="rating rating-0"></span>
@@ -21,8 +20,8 @@
         <%else%>
           <div class="user-rating">
             <span class="rating-none">&nbsp;</span>
-            <span class="rating rating-<%= @user.reviews.average(:rating).round %>">
-                <%= @user.reviews.average(:rating).round %>
+            <span class="rating rating-<%= review.rating %>">
+                <%= review.rating %>
             </span>
           </div>
         <%end%>

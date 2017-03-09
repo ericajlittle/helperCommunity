@@ -7,6 +7,7 @@
       <div class="column is-8">
         <h2 class="user-name"><%= @user.name %></h2>
         <p class="karma-member">Karma Member Since: <%= @user.created_at.strftime("%d %b. %Y") %></p>
+        <p>Date of Birth: <%= @user.DoB %></p>
         <p class="user-desc"><%= @user.description %></p>
         <strong>Karma Points Average</strong>
         <% if @user.reviews.average(:rating) == nil %>
